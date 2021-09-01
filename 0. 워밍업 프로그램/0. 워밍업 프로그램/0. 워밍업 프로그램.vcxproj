@@ -145,6 +145,7 @@
     <ClCompile Include="warming2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="warming3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
