@@ -10,6 +10,7 @@ public:
 	~String() { delete[] string_content; }
 
 	void println() const;
+	void print() const;
 	int getLength() { return string_length; }
 	char getString(int num) { return string_content[num]; }
 	void putString(int num, char c) { string_content[num] = c; }
@@ -28,6 +29,11 @@ void String::println() const {
 	}
 	std::cout << std::endl;
 }
+void String::print() const {
+	for (int i = 0; i != string_length; i++) {
+		std::cout << string_content[i];
+	}
+}
 
 class String_Manager {
 	String** string_list;
@@ -42,7 +48,11 @@ public:
 		string_list[row]->println();
 		row++;
 	}
-	void d();
+	void d();		// 문장 전체를 뒤집기
+	void e();		// 동일한 간격으로 띄어쓰기를 일정 개수 삽입하기
+	void f();		// 띄어쓰기를 기준으로 문자 뒤집기
+	void g();		// 문자 내부의 특정 문자열을 다른 문자열로 바꾸기
+	void h();		// 앞뒤에서 읽었을 때 어디까지 같은 문자인지 출력하기
 };
 void String_Manager::d()
 {
@@ -57,6 +67,41 @@ void String_Manager::d()
 		}
 		delete[] cmd;
 		string_list[i]->println();
+	}
+}
+void String_Manager::e()
+{
+	
+}
+void String_Manager::f()
+{
+
+}
+void String_Manager::g()
+{
+
+}
+void String_Manager::h()
+{
+	int front = 0, end = 0;
+	for (int i = 0; i < row; i++) {
+		front = 0, end = string_list[i]->getLength() - 1;
+		while (string_list[i]->getString(front) == string_list[i]->getString(end)) {
+			front++;
+			end--;
+		}
+		if (front == 0) {
+			string_list[i]->print();
+			std::cout << " : 0" << std::endl;
+		}
+		else {
+			string_list[i]->print();
+			std::cout << " : ";
+			for (int j = 0; j < front; j++) {
+				std::cout << string_list[i]->getString(j);
+			}
+			std::cout << std::endl;
+		}
 	}
 }
 
@@ -82,9 +127,29 @@ int main()
 		in.getline(str, 100);
 		string_list.add_string(new String(str));
 	}
-	string_list.d();
-	string_list.d();
-	string_list.d();
-	string_list.d();
-	string_list.d();
+	
+	char c;
+	while (1) {
+		std::cout << "input the command : ";
+		std::cin >> c;
+		switch (c) {
+		case 'd':
+			string_list.d();
+			break;
+		case 'e':
+			string_list.e();
+			break;
+		case 'f':
+			string_list.f();
+			break;
+		case 'g':
+			string_list.g();
+			break;
+		case 'h':
+			string_list.h();
+			break;
+		case 'q':
+			return 0;
+		}
+	}
 }
