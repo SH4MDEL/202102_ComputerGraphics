@@ -79,7 +79,7 @@ public:
 };
 void String_Manager::d()
 {
-	char* cmd;
+	char* tmp;
 	bool* insert;
 	if (don == true) {
 		don = false;
@@ -88,17 +88,17 @@ void String_Manager::d()
 		don = true;
 	}
 	for (int i = 0; i < row; i++) {
-		cmd = new char[string_list[i]->getLength()];
+		tmp = new char[string_list[i]->getLength()];
 		insert = new bool[string_list[i]->getLength()];
 		for (int j = string_list[i]->getLength(); j > 0; j--) {
-			cmd[string_list[i]->getLength() - j] = string_list[i]->getString(j - 1);
+			tmp[string_list[i]->getLength() - j] = string_list[i]->getString(j - 1);
 			insert[string_list[i]->getLength() - j] = string_list[i]->getInsert(j - 1);
 		}
 		for (int j = 0; j < string_list[i]->getLength(); j++) {
-			string_list[i]->putString(j, cmd[j]);
+			string_list[i]->putString(j, tmp[j]);
 			string_list[i]->putInsert(j, insert[j]);
 		}
-		delete[] cmd;
+		delete[] tmp;
 		delete[] insert;
 		string_list[i]->println();
 	}
