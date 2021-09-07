@@ -106,12 +106,12 @@ void colliderCheck(Rect rect, Line line)
 		sqrt(pow((line.gety2() - line.gety1()), 2) + pow((line.getx1() - line.getx2()), 2));
 
 	if ((distance[0] > 0 && distance[1] > 0 && distance[2] > 0 && distance[3] > 0) || (distance[0] < 0 && distance[1] < 0 && distance[2] < 0 && distance[3] < 0)) {
-		printf("%f %f %f %f\n", distance[0], distance[1], distance[2], distance[3]);
+		//printf("%f %f %f %f\n", distance[0], distance[1], distance[2], distance[3]);
 		std::cout << "No collide!!" << std::endl;
 		return;
 	}
 	else {
-		printf("%f %f %f %f\n", distance[0], distance[1], distance[2], distance[3]);
+		//printf("%f %f %f %f\n", distance[0], distance[1], distance[2], distance[3]);
 		std::cout << "Rectangle & Line collide!!" << std::endl;
 		return;
 	}
