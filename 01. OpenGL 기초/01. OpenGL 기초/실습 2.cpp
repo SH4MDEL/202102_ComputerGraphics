@@ -93,6 +93,9 @@ GLvoid mouse(int button, int state, int x, int y) {
 			bgm.randomColor();
 		}
 	}
+	if (button == GLUT_RIGHT_BUTTON) {
+		glutLeaveMainLoop();
+	}
 }
 
 GLvoid Reshape(int w, int h) {						//--- 콜백 함수: 다시 그리기 콜백 함수

@@ -6,7 +6,7 @@
 
 std::random_device rd;
 std::mt19937 gen(rd());
-std::uniform_int_distribution<int> dis(0, 1);
+std::uniform_int_distribution<int> dis(0, 10);
 
 GLvoid drawScene();
 GLvoid Reshape(int w, int h);
@@ -19,11 +19,6 @@ class BackgroundManage {
 public:
 	BackgroundManage(GLclampf Rtype, GLclampf Gtype, GLclampf Btype) :
 		Rtype(Rtype), Gtype(Gtype), Btype(Btype), timer(false) {}
-	GLvoid reColoring(GLclampf Rtype, GLclampf Gtype, GLclampf Btype) {
-		this->Rtype = Rtype;
-		this->Gtype = Gtype;
-		this->Btype = Btype;
-	}
 	GLclampf getR() { return Rtype; }
 	GLclampf getG() { return Gtype; }
 	GLclampf getB() { return Btype; }
@@ -37,24 +32,9 @@ public:
 	GLvoid timerOff() { timer = false; }
 
 	GLvoid randomColor() {
-		if (dis(gen) == 1) {
-			Rtype = 1;
-		}
-		else {
-			Rtype = 0;
-		}
-		if (dis(gen) == 1) {
-			Gtype = 1;
-		}
-		else {
-			Gtype = 0;
-		}
-		if (dis(gen) == 1) {
-			Btype = 1;
-		}
-		else {
-			Btype = 0;
-		}
+		Rtype = (GLclampf)dis(gen) / (GLclampf)10.0;
+		Gtype = (GLclampf)dis(gen) / (GLclampf)10.0;
+		Btype = (GLclampf)dis(gen) / (GLclampf)10.0;
 	}
 	~BackgroundManage() {};
 };
@@ -119,7 +99,7 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		break;
 	case 'Q':
 	case 'q':
-
+		glutLeaveMainLoop();
 		break;
 	}
 	glutPostRedisplay();

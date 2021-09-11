@@ -42,10 +42,11 @@ public:
 };
 
 struct Square : public Object {
-	GLclampf originx, originy, x, y, wsize, hsize;
+	GLclampf originx, originy, x, y;
+	GLclampf wsize, hsize;
 	Square* next;
-	bool rightOn;
-	bool upOn;
+	bool rightOn, upOn;
+	bool wsizeOn, hsizeOn;
 
 	Square(GLclampf x, GLclampf y) : originx(x), originy(y), x(x), y(y) {
 		Rtype = (GLclampf)dis(gen) / (GLclampf)10.0;
@@ -55,6 +56,8 @@ struct Square : public Object {
 		hsize = (GLclampf)0.1;
 		rightOn = boool(gen);
 		upOn = boool(gen);
+		wsizeOn = boool(gen);
+		hsizeOn = boool(gen);
 	}
 	GLclampf getX() { return x; }
 	GLclampf getY() { return y; }
@@ -104,7 +107,59 @@ struct Square_Manager {
 		}
 	}
 	void all_delete() {
-
+		for (int i = 0; i < num; i++) {
+			head = now->next->next;
+			delete now->next;
+			now->next = head;
+		}
+		num = 0;
+		timer = false;
+		size = false;
+	}
+	void reset() {
+		for (int i = 0; i < num; i++) {
+			now = now->next;
+			now->putX(now->originx);
+			now->putY(now->originy);
+		}
+	}
+	void sizeset() {
+		for (int i = 0; i < num; i++) {
+			if (now->wsizeOn == true && now->hsizeOn == true) {
+				if (now->wsize >= (GLclampf)0.5) {
+					now->hsizeOn = false;
+				}
+				else {
+					now->wsize += (GLclampf)0.005;
+				}
+			}
+			else if (now->wsizeOn == true && now->hsizeOn == false) {
+				if (now->wsize <= (GLclampf)0.1) {
+					now->wsizeOn = false;
+					now->hsizeOn = true;
+				}
+				else {
+					now->wsize -= (GLclampf)0.005;
+				}
+			}
+			else if (now->wsizeOn == false && now->hsizeOn == true) {
+				if (now->hsize >= (GLclampf)0.5) {
+					now->hsizeOn = false;
+				}
+				else {
+					now->hsize += (GLclampf)0.005;
+				}
+			}
+			else if (now->wsizeOn == false && now->hsizeOn == false) {
+				if (now->hsize <= (GLclampf)0.1) {
+					now->wsizeOn = true;
+					now->hsizeOn = true;
+				}
+				else {
+					now->hsize -= (GLclampf)0.005;
+				}
+			}
+		}
 	}
 };
 
@@ -167,11 +222,7 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		break;
 	case 'M':
 	case 'm':
-		for (int i = 0; i < sm.num; i++) {
-			sm.now = sm.now->next;
-			sm.now->putX(sm.now->originx);
-			sm.now->putY(sm.now->originy);
-		}
+		sm.reset();
 		break;
 	case 'R':
 	case 'r':
@@ -179,7 +230,7 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		break;
 	case 'Q':
 	case 'q':
-
+		glutLeaveMainLoop();
 		break;
 	}
 	glutPostRedisplay();
@@ -227,7 +278,7 @@ GLvoid TimerFunction(int value)
 				}
 			}
 			if (sm.size == true) {
-				
+				sm.sizeset();
 			}
 		}
 		glutPostRedisplay();

@@ -101,6 +101,9 @@ GLvoid mouse(int button, int state, int x, int y) {
 	else {
 		square.unclick();
 	}
+	if (button == GLUT_RIGHT_BUTTON) {
+		glutLeaveMainLoop();
+	}
 }
 
 GLvoid motion(int x, int y)
