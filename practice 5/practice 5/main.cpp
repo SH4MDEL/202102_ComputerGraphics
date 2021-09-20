@@ -2,8 +2,6 @@
 #include "shader.h"
 #include "stdafx.h"
 
-#define BACKGROUNDCOLOR 1.0
-
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dis(0, 10);
@@ -13,20 +11,21 @@ GLuint make_shaderProgram();
 GLvoid drawScene();
 GLvoid mouse(int button, int state, int x, int y);
 GLvoid Keyboard(unsigned char inputKey, int x, int y);
-GLvoid TimerFunction(int value);
 GLvoid Reshape(int w, int h);
+
+void sizeset();
 
 GLchar* vertexSource, *fragmentSource; //--- 소스코드 저장 변수
 GLuint vertexShader, fragmentShader; //--- 세이더 객체
-GLfloat size = 0.0;
-bool settype = false;
 
 struct Triangle {
 	GLfloat data[2][3][3];		// 0번 : 위치, 1번 : 색상
 	GLuint vao, vbo[2];
 	Triangle* next;
+	GLfloat size = 0.0;
 
-	Triangle(GLfloat mx, GLfloat my) {
+	Triangle(GLfloat mx, GLfloat my, GLfloat size) {
+		this->size = size;
 		data[0][0][0] = mx - (GLfloat)0.1 - size,	data[0][0][1] = my - (GLfloat)0.1 - size,	data[0][0][2] = 0.0,
 		data[0][1][0] = mx + (GLfloat)0.1 + size,	data[0][1][1] = my - (GLfloat)0.1 - size,	data[0][1][2] = 0.0,
 		data[0][2][0] = mx,							data[0][2][1] = my + (GLfloat)0.1 + size,	data[0][2][2] = 0.0;
@@ -41,6 +40,10 @@ struct Triangle {
 
 		glGenBuffers(2, vbo); //--- 2개의 VBO를 지정하고 할당하기
 
+		vertexArraySet();
+	}
+	void vertexArraySet()
+	{
 		for (int i = 0; i < 2; i++) {
 			//--- i번째 VBO를 활성화하여 바인드하고, 버텍스 속성 (좌표값)을 저장
 			glBindBuffer(GL_ARRAY_BUFFER, vbo[i]);
@@ -53,27 +56,6 @@ struct Triangle {
 			glEnableVertexAttribArray(i);
 			//std::cout << "set vbo\n";
 		}
-		sizeset();
-	}
-	void sizeset() {
-		if (settype == false) {
-			if (size >= 0.1) {
-				size -= (GLfloat)0.01;
-				settype = true;
-			}
-			else {
-				size += (GLfloat)0.01;
-			}
-		}
-		else {
-			if (size <= 0.0) {
-				size += (GLfloat)0.01;
-				settype = false;
-			}
-			else {
-				size -= (GLfloat)0.01;
-			}
-		}
 	}
 	Triangle* getNextAddress() { return next; }
 	GLvoid putNextAddress(Triangle* nextTriangle) { this->next = nextTriangle; }
@@ -85,7 +67,7 @@ struct Triangle_Manager {
 	int data_num;
 	bool drawtype;
 
-	Triangle_Manager() { data_num = 0, drawtype = false, settype = false; }
+	Triangle_Manager() { data_num = 0, drawtype = false; }
 	void add_triangle(Triangle* triangle) {
 		if (data_num == 0) {
 			triangle->putNextAddress(triangle);
@@ -108,11 +90,14 @@ struct Triangle_Manager {
 			triangle->putNextAddress(head);
 			data_num++;
 		}
+		sizeset();
 	}
 };
 
 Triangle_Manager tm;
 GLclampf xPos = 0, yPos = 0;
+GLfloat size = 0.0;
+bool settype = false;
 
 int main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 {
@@ -135,10 +120,10 @@ int main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 	glewInit();
 	initShader();
 
-	tm.add_triangle(new Triangle(-0.5, 0.5));
-	tm.add_triangle(new Triangle(0.5, 0.5));
-	tm.add_triangle(new Triangle(-0.5, -0.5));
-	tm.add_triangle(new Triangle(0.5, -0.5));
+	tm.add_triangle(new Triangle(-0.5, 0.5, size));
+	tm.add_triangle(new Triangle(0.5, 0.5, size));
+	tm.add_triangle(new Triangle(-0.5, -0.5, size));
+	tm.add_triangle(new Triangle(0.5, -0.5, size));
 
 	glutDisplayFunc(drawScene);
 	glutMouseFunc(mouse);
@@ -225,7 +210,7 @@ GLvoid mouse(int button, int state, int x, int y) {
 	xPos = (((GLclampf)x - ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0));
 	yPos = (((GLclampf)y - ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0));
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-		tm.add_triangle(new Triangle(xPos, yPos));
+		tm.add_triangle(new Triangle(xPos, yPos, size));
 	}
 }
 
@@ -251,4 +236,25 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 GLvoid Reshape(int w, int h) //--- 콜백 함수: 다시 그리기 콜백 함수
 {
 	glViewport(0, 0, w, h);
+}
+
+void sizeset() {
+	if (settype == false) {
+		if (size >= 0.1) {
+			size -= (GLfloat)0.01;
+			settype = true;
+		}
+		else {
+			size += (GLfloat)0.01;
+		}
+	}
+	else {
+		if (size <= 0.0) {
+			size += (GLfloat)0.01;
+			settype = false;
+		}
+		else {
+			size -= (GLfloat)0.01;
+		}
+	}
 }
