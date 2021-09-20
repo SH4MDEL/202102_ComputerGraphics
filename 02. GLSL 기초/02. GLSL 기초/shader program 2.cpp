@@ -6,6 +6,8 @@ GLuint make_shaderProgram();
 GLvoid drawScene();
 GLvoid Reshape(int w, int h);
 
+char* filetobuf(const char* file);
+
 GLuint shaderID;
 GLint width, height;
 
@@ -39,8 +41,8 @@ int main(int argc, char** argv)
 GLuint vertexShader;
 void make_vertexShaders()
 {
-	const GLchar* vertexShaderSource;
-	std::ifstream vertexin("vertex.glsl");
+	GLchar* vertexShaderSource;
+	vertexShaderSource = filetobuf("vertex.glsl");
 
 	//--- 버텍스 세이더 읽어 저장하고 컴파일 하기
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -60,8 +62,8 @@ void make_vertexShaders()
 GLuint fragmentShader;
 void make_fragmentShaders()
 {
-	const GLchar* fragmentShaderSource;
-	std::ifstream fragmentin("fragment.glsl");
+	GLchar* fragmentShaderSource;
+	fragmentShaderSource = filetobuf("fragment.glsl");
 
 	//--- 프래그먼트 세이더 읽어 저장하고 컴파일하기
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -125,4 +127,22 @@ GLvoid drawScene() //--- 콜백 함수: 그리기 콜백 함수
 GLvoid Reshape(int w, int h) //--- 콜백 함수: 다시 그리기 콜백 함수
 {
 	glViewport(0, 0, w, h);
+}
+
+char* filetobuf(const char* file)
+{
+	FILE* fptr;
+	long length;
+	char* buf;
+	fptr = fopen(file, "rb"); // Open file for reading 
+	if (!fptr) // Return NULL on failure 
+		return NULL;
+	fseek(fptr, 0, SEEK_END); // Seek to the end of the file 
+	length = ftell(fptr); // Find out how many bytes into the file we are 
+	buf = (char*)malloc(length + 1); // Allocate a buffer for the entire length of the file and a null terminator 
+	fseek(fptr, 0, SEEK_SET); // Go back to the beginning of the file 
+	fread(buf, length, 1, fptr); // Read the contents of the file in to the buffer 
+	fclose(fptr); // Close the file 
+	buf[length] = 0; // Null terminator 
+	return buf; // Return the buffer
 }
