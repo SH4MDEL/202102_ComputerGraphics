@@ -45,9 +45,7 @@ struct _Rectangle {
 		data[1][2][0] = data[1][3][0], data[1][2][1] = data[1][3][1], data[1][2][2] = data[1][3][2];
 		data[1][1][0] = data[1][4][0], data[1][1][1] = data[1][4][1], data[1][1][2] = data[1][4][2];
 
-		std::cout << "loading4";
 		glGenVertexArrays(1, &vao); //--- VAO 를 지정하고 할당하기
-		std::cout << "loading5";
 		glBindVertexArray(vao);
 
 		glGenBuffers(2, vbo); //--- 2개의 VBO를 지정하고 할당하기
@@ -105,8 +103,8 @@ struct Triangle {
 			}
 		}
 		glGenVertexArrays(1, &vao); //--- VAO 를 지정하고 할당하기
-
 		glBindVertexArray(vao);
+
 		glGenBuffers(2, vbo); //--- 2개의 VBO를 지정하고 할당하기
 
 		vertexArraySet();
@@ -123,7 +121,6 @@ struct Triangle {
 			glVertexAttribPointer(i, 3, GL_FLOAT, GL_FALSE, 0, 0);
 			//--- attribute 인덱스 i번을 사용가능하게 함
 			glEnableVertexAttribArray(i);
-			//std::cout << "set vbo\n";
 		}
 	}
 	void colorSet() {
@@ -447,8 +444,6 @@ void initShader()
 	glAttachShader(s_program, fragmentShader);
 	glLinkProgram(s_program);
 
-	//checkCompileErrors(s_program, "PROGRAM");
-
 	//--- 세이더 삭제하기
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
@@ -492,9 +487,6 @@ GLvoid drawScene()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//--- 렌더링 파이프라인에 세이더 불러오기
 	glUseProgram(s_program);
-
-	//glBindVertexArray(wall.vao);
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(rm.rect->vao);
 	//--- 삼각형 그리기

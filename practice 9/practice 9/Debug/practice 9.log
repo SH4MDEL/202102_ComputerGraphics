@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\Seungjun Lee\Desktop\Coding\202102_ComputerGraphics\practice 9\practice 9\main.cpp(40,38): warning C4244: '=': 'double'에서 'GLfloat'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  practice 9.vcxproj -> C:\Users\Seungjun Lee\Desktop\Coding\202102_ComputerGraphics\practice 9\Debug\practice 9.exe

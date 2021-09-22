@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\shader program">
+      <UniqueIdentifier>{6b0e40c3-c58d-4f8d-b855-37537afb0fb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\shader program">
+      <UniqueIdentifier>{a2d8a40e-aa38-4f81-8342-45078222a3ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertex.glsl">
+      <Filter>소스 파일\shader program</Filter>
+    </None>
+    <None Include="fragment.glsl">
+      <Filter>소스 파일\shader program</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="initShader.cpp">
+      <Filter>소스 파일\shader program</Filter>
+    </ClCompile>
+    <ClCompile Include="make_shaderProgram.cpp">
+      <Filter>소스 파일\shader program</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>소스 파일\shader program</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>헤더 파일</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="initShader.h">
+      <Filter>헤더 파일\shader program</Filter>
+    </ClInclude>
+    <ClInclude Include="make_shaderProgram.h">
+      <Filter>헤더 파일\shader program</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>헤더 파일\shader program</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
