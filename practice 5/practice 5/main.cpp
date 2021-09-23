@@ -144,8 +144,6 @@ void initShader()
 	glAttachShader(s_program, fragmentShader);
 	glLinkProgram(s_program);
 
-	//checkCompileErrors(s_program, "PROGRAM");
-
 	//--- 세이더 삭제하기
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
@@ -157,14 +155,14 @@ void initShader()
 GLuint make_shaderProgram()
 {
 	GLuint ShaderProgramID;
-	ShaderProgramID = glCreateProgram(); //--- 세이더 프로그램 만들기
+	ShaderProgramID = glCreateProgram();
 
-	glAttachShader(ShaderProgramID, vertexShader); //--- 세이더 프로그램에 버텍스 세이더 붙이기
-	glAttachShader(ShaderProgramID, fragmentShader); //--- 세이더 프로그램에 프래그먼트 세이더 붙이기
+	glAttachShader(ShaderProgramID, vertexShader);
+	glAttachShader(ShaderProgramID, fragmentShader);
 
-	glLinkProgram(ShaderProgramID); //--- 세이더 프로그램 링크하기
+	glLinkProgram(ShaderProgramID);
 
-	glDeleteShader(vertexShader); //--- 세이더 객체를 세이더 프로그램에 링크했음으로, 세이더 객체 자체는 삭제 가능
+	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
 	GLint result;
@@ -175,10 +173,7 @@ GLuint make_shaderProgram()
 		std::cerr << "ERROR: shader program 연결 실패\n" << errorLog << std::endl;
 		return false;
 	}
-	glUseProgram(ShaderProgramID); //--- 만들어진 세이더 프로그램 사용하기
-	//--- 여러 개의 세이더프로그램 만들 수 있고, 그 중 한개의 프로그램을 사용하려면
-	//--- glUseProgram 함수를 호출하여 사용 할 특정 프로그램을 지정한다.
-	//--- 사용하기 직전에 호출할 수 있다.
+	glUseProgram(ShaderProgramID);
 	return ShaderProgramID;
 }
 

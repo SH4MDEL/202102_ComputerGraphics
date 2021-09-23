@@ -15,7 +15,7 @@ GLvoid Reshape(int w, int h);
 GLchar* vertexSource, * fragmentSource; //--- 소스코드 저장 변수
 GLuint vertexShader, fragmentShader; //--- 세이더 객체
 GLuint s_program;
-bool initiation = false, timer = false, reverse = false;
+bool initiation = false, timer = false, reverse = false, stitch = false;
 int delay = 15;
 
 enum TriangleStatus {
@@ -38,13 +38,13 @@ struct VecterArray {
 VecterArray va;
 
 struct Triangle {
-	GLfloat Tx, Ty;
+	GLfloat Tx, Ty, weight;
 	GLfloat data[2][3][3];		// 0번 : 위치, 1번 : 색상
 	GLuint vao, vbo[2];
 	int position;
 	int moveStack;
 
-	Triangle(GLfloat Tx, GLfloat Ty) : Tx(Tx), Ty(Ty), position(TriangleStatus::GoingLeft), moveStack(0) {
+	Triangle(GLfloat Tx, GLfloat Ty, GLfloat weight) : Tx(Tx), Ty(Ty), weight(weight), position(TriangleStatus::GoingLeft), moveStack(0) {
 		data[0][0][0] = Tx - (GLfloat)0.05, data[0][0][1] = Ty - (GLfloat)0.05, data[0][0][2] = 0.0;
 		data[0][1][0] = Tx + (GLfloat)0.05, data[0][1][1] = Ty - (GLfloat)0.05, data[0][1][2] = 0.0;
 		data[0][2][0] = Tx,					data[0][2][1] = Ty + (GLfloat)0.05, data[0][2][2] = 0.0;
@@ -52,6 +52,9 @@ struct Triangle {
 		data[1][0][0] = 0.5, data[1][0][1] = 0.5, data[1][0][2] = 0.5;
 		data[1][1][0] = 0.5, data[1][1][1] = 0.5, data[1][1][2] = 0.5;
 		data[1][2][0] = 0.5, data[1][2][1] = 0.5, data[1][2][2] = 0.5;
+	}
+	void setthis(GLfloat x, GLfloat y, int position, int moveStack) {
+		this->Tx = x, this->Ty = y, this->position = position, this->moveStack = moveStack;
 	}
 	void moveit(int lineStatus) {
 		if (lineStatus == SnakeStatus::LeftDown) {
@@ -158,14 +161,38 @@ struct Triangle {
 				Tx -= (GLfloat)0.01;
 			}
 		}
-		data[0][0][0] = Tx - (GLfloat)0.05, data[0][0][1] = Ty - (GLfloat)0.05, data[0][0][2] = 0.0;
-		data[0][1][0] = Tx + (GLfloat)0.05, data[0][1][1] = Ty - (GLfloat)0.05, data[0][1][2] = 0.0;
-		data[0][2][0] = Tx,					data[0][2][1] = Ty + (GLfloat)0.05, data[0][2][2] = 0.0;
+		if (stitch == true) {
+			if ((position == TriangleStatus::GoingLeft && reverse == false) || (position == TriangleStatus::GoingRight && reverse == true)) {
+				data[0][0][0] = Tx - (GLfloat)0.05 - weight, data[0][0][1] = Ty - (GLfloat)0.05, data[0][0][2] = 0.0;
+				data[0][1][0] = Tx + (GLfloat)0.05 - weight, data[0][1][1] = Ty - (GLfloat)0.05, data[0][1][2] = 0.0;
+				data[0][2][0] = Tx - weight,				 data[0][2][1] = Ty + (GLfloat)0.05, data[0][2][2] = 0.0;
+			}
+			else if ((position == TriangleStatus::GoingRight && reverse == false) || (position == TriangleStatus::GoingLeft && reverse == true)) {
+				data[0][0][0] = Tx - (GLfloat)0.05 + weight, data[0][0][1] = Ty - (GLfloat)0.05, data[0][0][2] = 0.0;
+				data[0][1][0] = Tx + (GLfloat)0.05 + weight, data[0][1][1] = Ty - (GLfloat)0.05, data[0][1][2] = 0.0;
+				data[0][2][0] = Tx + weight, data[0][2][1] = Ty + (GLfloat)0.05, data[0][2][2] = 0.0;
+			}
+			else if ((position == TriangleStatus::GoingDown && reverse == false) || (position == TriangleStatus::GoingUp && reverse == true)) {
+				data[0][0][0] = Tx - (GLfloat)0.05, data[0][0][1] = Ty - (GLfloat)0.05 - weight, data[0][0][2] = 0.0;
+				data[0][1][0] = Tx + (GLfloat)0.05, data[0][1][1] = Ty - (GLfloat)0.05 - weight, data[0][1][2] = 0.0;
+				data[0][2][0] = Tx,					data[0][2][1] = Ty + (GLfloat)0.05 - weight, data[0][2][2] = 0.0;
+			}
+			else {
+				data[0][0][0] = Tx - (GLfloat)0.05, data[0][0][1] = Ty - (GLfloat)0.05 + weight, data[0][0][2] = 0.0;
+				data[0][1][0] = Tx + (GLfloat)0.05, data[0][1][1] = Ty - (GLfloat)0.05 + weight, data[0][1][2] = 0.0;
+				data[0][2][0] = Tx,					data[0][2][1] = Ty + (GLfloat)0.05 + weight, data[0][2][2] = 0.0;
+			}
+		}
+		else {
+			data[0][0][0] = Tx - (GLfloat)0.05, data[0][0][1] = Ty - (GLfloat)0.05, data[0][0][2] = 0.0;
+			data[0][1][0] = Tx + (GLfloat)0.05, data[0][1][1] = Ty - (GLfloat)0.05, data[0][1][2] = 0.0;
+			data[0][2][0] = Tx,					data[0][2][1] = Ty + (GLfloat)0.05, data[0][2][2] = 0.0;
+		}
 	}
 };
 struct Snake {
-	Triangle tri[6] = { Triangle((GLfloat)-0.2, (GLfloat)0.0), Triangle((GLfloat)-0.1, (GLfloat)0.0), Triangle((GLfloat)0.0, (GLfloat)0.0),
-						Triangle((GLfloat)0.1, (GLfloat)0.0), Triangle((GLfloat)0.2, (GLfloat)0.0), Triangle((GLfloat)0.3, (GLfloat)0.0) };
+	Triangle tri[6] = { Triangle((GLfloat)-0.2, (GLfloat)0.0, -0.01f), Triangle((GLfloat)-0.1, (GLfloat)0.0, 0.01f), Triangle((GLfloat)0.0, (GLfloat)0.0, -0.01f),
+						Triangle((GLfloat)0.1, (GLfloat)0.0, 0.01f), Triangle((GLfloat)0.2, (GLfloat)0.0, -0.01f), Triangle((GLfloat)0.3, (GLfloat)0.0, 0.01f) };
 	int position;
 	Snake() : position(SnakeStatus::LeftDown) {}
 	
@@ -176,7 +203,12 @@ struct Snake {
 					if (tri[5].Ty < -0.95) {
 						this->position = SnakeStatus::RightUp;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -189,7 +221,12 @@ struct Snake {
 					if (tri[5].Ty < -0.95) {
 						this->position = SnakeStatus::LeftUp;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -202,7 +239,12 @@ struct Snake {
 					if (tri[5].Ty > 0.95) {
 						this->position = SnakeStatus::RightDown;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -215,7 +257,12 @@ struct Snake {
 					if (tri[5].Ty > 0.95) {
 						this->position = SnakeStatus::LeftDown;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -230,7 +277,12 @@ struct Snake {
 					if (tri[0].Ty < -0.95) {
 						this->position = SnakeStatus::RightUp;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -243,7 +295,12 @@ struct Snake {
 					if (tri[0].Ty < -0.95) {
 						this->position = SnakeStatus::LeftUp;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -256,7 +313,12 @@ struct Snake {
 					if (tri[0].Ty > 0.95) {
 						this->position = SnakeStatus::RightDown;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -269,7 +331,12 @@ struct Snake {
 					if (tri[0].Ty > 0.95) {
 						this->position = SnakeStatus::LeftDown;
 						for (int i = 0; i < 6; i++) {
-							tri[i].moveStack = abs(tri[i].moveStack - 10);
+							if (tri[i].moveStack == 0) {
+								tri[i].moveStack = 10;
+							}
+							else if (tri[i].moveStack == 10) {
+								tri[i].moveStack = 0;
+							}
 						}
 					}
 					else {
@@ -353,81 +420,95 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 	case 'N':
 	case 'n':
 		//이동방향 전환
-
-		if (snake.position == SnakeStatus::LeftDown) {
-			snake.position = SnakeStatus::RightUp;
-			for (int i = 0; i < 6; i++) {
-				if (snake.tri[i].position == TriangleStatus::GoingRight) {
-					snake.tri[i].position = TriangleStatus::GoingLeft;
+		if ((snake.tri[0].position != TriangleStatus::GoingDown && snake.tri[0].position != TriangleStatus::GoingUp) &&
+			(snake.tri[5].position != TriangleStatus::GoingDown && snake.tri[5].position != TriangleStatus::GoingUp)) {
+			if (snake.position == SnakeStatus::LeftDown) {
+				for (int i = 0; i < 6; i++) {
+					if (snake.tri[i].position == TriangleStatus::GoingRight) {
+						snake.tri[i].position = TriangleStatus::GoingLeft;
+							if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+							else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
+						snake.tri[i].position = TriangleStatus::GoingRight;
+							if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+							else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingUp) {
+						snake.tri[i].position = TriangleStatus::GoingDown;
+					}
+					else {
+						snake.tri[i].position = TriangleStatus::GoingUp;
+					}
 				}
-				else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
-					snake.tri[i].position = TriangleStatus::GoingRight;
-				}
-				else if (snake.tri[i].position == TriangleStatus::GoingUp) {
-					snake.tri[i].position = TriangleStatus::GoingDown;
-				}
-				else {
-					snake.tri[i].position = TriangleStatus::GoingUp;
-				}
+				snake.position = SnakeStatus::RightUp;
 			}
-		}
-		else if (snake.position == SnakeStatus::RightUp) {
-			snake.position = SnakeStatus::LeftDown;
-			for (int i = 0; i < 6; i++) {
-				if (snake.tri[i].position == TriangleStatus::GoingRight) {
-					snake.tri[i].position = TriangleStatus::GoingLeft;
+			else if (snake.position == SnakeStatus::RightUp) {
+				for (int i = 0; i < 6; i++) {
+					if (snake.tri[i].position == TriangleStatus::GoingRight) {
+						snake.tri[i].position = TriangleStatus::GoingLeft;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
+						snake.tri[i].position = TriangleStatus::GoingRight;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingUp) {
+						snake.tri[i].position = TriangleStatus::GoingDown;
+					}
+					else {
+						snake.tri[i].position = TriangleStatus::GoingUp;
+					}
 				}
-				else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
-					snake.tri[i].position = TriangleStatus::GoingRight;
-				}
-				else if (snake.tri[i].position == TriangleStatus::GoingUp) {
-					snake.tri[i].position = TriangleStatus::GoingDown;
-				}
-				else {
-					snake.tri[i].position = TriangleStatus::GoingUp;
-				}
+				snake.position = SnakeStatus::LeftDown;
 			}
-		}
-		else if (snake.position == SnakeStatus::RightDown) {
-			snake.position = SnakeStatus::LeftUp;
-			for (int i = 0; i < 6; i++) {
-				if (snake.tri[i].position == TriangleStatus::GoingRight) {
-					snake.tri[i].position = TriangleStatus::GoingLeft;
+			else if (snake.position == SnakeStatus::RightDown) {
+				for (int i = 0; i < 6; i++) {
+					if (snake.tri[i].position == TriangleStatus::GoingRight) {
+						snake.tri[i].position = TriangleStatus::GoingLeft;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
+						snake.tri[i].position = TriangleStatus::GoingRight;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingUp) {
+						snake.tri[i].position = TriangleStatus::GoingDown;
+					}
+					else {
+						snake.tri[i].position = TriangleStatus::GoingUp;
+					}
 				}
-				else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
-					snake.tri[i].position = TriangleStatus::GoingRight;
-				}
-				else if (snake.tri[i].position == TriangleStatus::GoingUp) {
-					snake.tri[i].position = TriangleStatus::GoingDown;
-				}
-				else {
-					snake.tri[i].position = TriangleStatus::GoingUp;
-				}
+				snake.position = SnakeStatus::LeftUp;
 			}
-		}
-		else {
-			snake.position = SnakeStatus::RightDown;
-			for (int i = 0; i < 6; i++) {
-				if (snake.tri[i].position == TriangleStatus::GoingRight) {
-					snake.tri[i].position = TriangleStatus::GoingLeft;
+			else {
+				for (int i = 0; i < 6; i++) {
+					if (snake.tri[i].position == TriangleStatus::GoingRight) {
+						snake.tri[i].position = TriangleStatus::GoingLeft;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
+						snake.tri[i].position = TriangleStatus::GoingRight;
+						if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
+						else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
+					}
+					else if (snake.tri[i].position == TriangleStatus::GoingUp) {
+						snake.tri[i].position = TriangleStatus::GoingDown;
+					}
+					else {
+						snake.tri[i].position = TriangleStatus::GoingUp;
+					}
 				}
-				else if (snake.tri[i].position == TriangleStatus::GoingLeft) {
-					snake.tri[i].position = TriangleStatus::GoingRight;
-				}
-				else if (snake.tri[i].position == TriangleStatus::GoingUp) {
-					snake.tri[i].position = TriangleStatus::GoingDown;
-				}
-				else {
-					snake.tri[i].position = TriangleStatus::GoingUp;
-				}
+				snake.position = SnakeStatus::RightDown;
 			}
+			if (reverse == false) { reverse = true; }
+			else { reverse = false; }
 		}
-		for (int i = 0; i < 6; i++) {
-			if (snake.tri[i].moveStack == 0) { snake.tri[i].moveStack = 10; }
-			else if (snake.tri[i].moveStack == 10) { snake.tri[i].moveStack = 0; }
-		}
-		if (reverse == false) { reverse = true; }
-		else { reverse = false; }
 		break;
 	case '+':
 	case '=':
@@ -446,10 +527,12 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 	case 'A':
 	case 'a':
 		// 두개씩 연결되어 같이 이동
+		stitch = true;
 		break;
 	case 'B':
 	case 'b':
-		// 두개씩 연결되어 같이 이동
+		// 분리되어 같이 이동
+		stitch = false;
 		break;
 	case 'Q':
 	case 'q':
