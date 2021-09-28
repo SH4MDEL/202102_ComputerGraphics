@@ -91,6 +91,14 @@ struct _Rectangle {
 			data[i][1][1][2][0] = r, data[i][1][1][2][1] = g, data[i][1][1][2][2] = b;
 		}
 	}
+	void CollideCheck(GLfloat ex, GLfloat ey) {
+		for (int i = 0; i < 100; i++) {
+			if (drawed[i] == true && data[i][0][0][0][0] <= ex + 0.04f && data[i][0][0][2][0] >= ex - 0.04f &&
+				data[i][0][0][0][1] <= ey + 0.04f && data[i][0][0][2][1] >= ey - 0.04f) {
+				drawed[i] = false;
+			}
+		}
+	}
 };
 _Rectangle rectangle;
 
@@ -173,6 +181,7 @@ GLvoid motion(int x, int y)
 		xPos = (((GLclampf)x - ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0));
 		yPos = (((GLclampf)y - ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0));
 		eraser.setCoordinate(xPos, yPos);
+		rectangle.CollideCheck(xPos, yPos);
 		reinitEraserBuffer();
 		glutPostRedisplay();
 	}
