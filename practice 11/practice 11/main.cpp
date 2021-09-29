@@ -6,6 +6,10 @@
 void initBuffer();
 void reinitBuffer();
 
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<int> colors(0, 10);
+
 bool isDivide(GLfloat x11, GLfloat y11, GLfloat x12, GLfloat y12, GLfloat x21, GLfloat y21, GLfloat x22, GLfloat y22);
 bool isCross(GLfloat x11, GLfloat y11, GLfloat x12, GLfloat y12, GLfloat x21, GLfloat y21, GLfloat x22, GLfloat y22);
 bool isIn(GLfloat mx, GLfloat my);
@@ -55,17 +59,17 @@ struct _Rectangle {
 		data[0][0][1][0] = 0.5f, data[0][0][1][1] = -0.5f, data[0][0][1][2] = 0.0f;
 		data[0][0][2][0] = 0.5f, data[0][0][2][1] = 0.5f, data[0][0][2][2] = 0.0f;
 
-		data[0][1][0][0] = 0.0f, data[0][1][0][1] = 0.0f, data[0][1][0][2] = 0.0f;		// 색상
-		data[0][1][1][0] = 0.0f, data[0][1][1][1] = 0.0f, data[0][1][1][2] = 0.0f;
-		data[0][1][2][0] = 0.0f, data[0][1][2][1] = 0.0f, data[0][1][2][2] = 0.0f;
+		data[0][1][0][0] = (GLfloat)colors(gen) / 10.0f, data[0][1][0][1] = (GLfloat)colors(gen) / 10.0f, data[0][1][0][2] = (GLfloat)colors(gen) / 10.0f;		// 색상
+		data[0][1][1][0] = (GLfloat)colors(gen) / 10.0f, data[0][1][1][1] = (GLfloat)colors(gen) / 10.0f, data[0][1][1][2] = (GLfloat)colors(gen) / 10.0f;
+		data[0][1][2][0] = (GLfloat)colors(gen) / 10.0f, data[0][1][2][1] = (GLfloat)colors(gen) / 10.0f, data[0][1][2][2] = (GLfloat)colors(gen) / 10.0f;
 
 		data[1][0][0][0] = 0.5f, data[1][0][0][1] = 0.5f, data[1][0][0][2] = 0.0f;		// 위치
 		data[1][0][1][0] = -0.5f, data[1][0][1][1] = 0.5f, data[1][0][1][2] = 0.0f;
 		data[1][0][2][0] = -0.5f, data[1][0][2][1] = -0.5f, data[1][0][2][2] = 0.0f;
 
-		data[1][1][0][0] = 0.0f, data[1][1][0][1] = 0.0f, data[1][1][0][2] = 0.0f;		// 색상
-		data[1][1][1][0] = 0.0f, data[1][1][1][1] = 0.0f, data[1][1][1][2] = 0.0f;
-		data[1][1][2][0] = 0.0f, data[1][1][2][1] = 0.0f, data[1][1][2][2] = 0.0f;
+		data[1][1][0][0] = data[0][1][2][0], data[1][1][0][1] = data[0][1][2][1], data[1][1][0][2] = data[0][1][2][2];		// 색상
+		data[1][1][1][0] = (GLfloat)colors(gen) / 10.0f, data[1][1][1][1] = (GLfloat)colors(gen) / 10.0f, data[1][1][1][2] = (GLfloat)colors(gen) / 10.0f;
+		data[1][1][2][0] = data[0][1][0][0], data[1][1][2][1] = data[0][1][0][1], data[1][1][2][2] = data[0][1][0][2];
 	}
 	void releftdown(GLfloat x, GLfloat y) {
 		data[0][0][0][0] = x, data[0][0][0][1] = y;
