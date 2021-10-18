@@ -7,6 +7,8 @@ layout(location = 1) in vec3 in_Color;			// 컬러 변수: attribute position 1
 out vec3 out_Color;								// 프래그먼트 세이더에게 전달
 
 uniform mat4 backgroundModelTransform;
+uniform mat4 xzlineModelTransform;
+
 uniform mat4 firstModelTransform;
 uniform mat4 secondModelTransform;
 
@@ -22,6 +24,10 @@ void main(void)
 	}
 	else if (modelSelect == 2) {
 		gl_Position = secondModelTransform * vec4(in_Position.x, in_Position.y, in_Position.z, 1.0);
+		out_Color = in_Color;
+	}
+	else if (modelSelect == 3) {
+		gl_Position = xzlineModelTransform * vec4(in_Position.x, in_Position.y, in_Position.z, 1.0);
 		out_Color = in_Color;
 	}
 }

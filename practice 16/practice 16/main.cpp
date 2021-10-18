@@ -3,6 +3,10 @@
 #include "initShader.h"
 #include "make_shaderProgram.h"
 #include "stdafx.h"
+
+#define DOT_COUNT 500
+#define PI 3.141592
+
 void initBuffer();
 
 GLvoid drawScene();
@@ -19,6 +23,7 @@ GLuint vertexShader, fragmentShader; //--- 세이더 객체
 GLuint s_program;
 
 struct VectexArray {
+	GLuint vao[DOT_COUNT], vbo[DOT_COUNT][2];
 	GLuint line_vao[3], line_vbo[3][2];
 	GLuint hexahedron_vao[6], hexahedron_vbo[6][2];
 	GLuint tetrahedron_vao[6], tetrahedron_vbo[6][2];
@@ -27,8 +32,10 @@ VectexArray va;
 
 struct RunControl {
 	bool rRotate;
+	float xRotateObject, zRotateObject;
 
 	float linexPos, linezPos;
+	float lTranslatePos;
 
 	float xTranslatePos, yTranslatePos, zTranslatePos;
 
@@ -36,19 +43,65 @@ struct RunControl {
 
 	float scaleByStandard, scaleByObject;
 
+
 	RunControl() {
 		reset();
 	}
 	void reset() {
 		rRotate = false;
+		xRotateObject = 0.0f, zRotateObject = 0.0f;
 
 		linexPos = 0.0f, linezPos = 0.0f;
+		lTranslatePos = 0.0f;
 		xTranslatePos = -0.5f, yTranslatePos = 0.0f, zTranslatePos = 0.0f;
 		aTranslatePos = 0.5f, bTranslatePos = 0.0f, cTranslatePos = 0.0f;
 		scaleByStandard = 1.0f, scaleByObject = 1.0f;
 	}
 };
 RunControl rc;
+
+struct Tornado {
+	GLfloat data[DOT_COUNT][2][3];
+	bool drawed[DOT_COUNT];
+	int now;
+	GLfloat length;
+	int round, loop;
+
+	Tornado() {
+		now = 0;
+		length = 0.0f;
+		round = 0;
+		for (int i = 0; i < DOT_COUNT; i++) {
+			data[i][0][0] = (length) * (GLfloat)cos(PI / 40 * round);
+			data[i][0][1] = 0.0f;
+			data[i][0][2] = (length) * (GLfloat)sin(PI / 40 * round);
+			length += 0.002f;
+			round++;
+			data[i][1][0] = 0.0f;
+			data[i][1][1] = 0.0f;
+			data[i][1][2] = 0.0f;
+		}
+		loop = 0;
+	}
+	bool cursorloop() {
+		if (now == DOT_COUNT) {
+			now = 0;
+			return false;
+		}
+		else {
+			drawed[now] = true;
+			now++;
+			return true;
+		}
+	}
+	float nextX() {
+		return data[loop][0][0];
+	}
+	float nextZ() {
+		return data[loop][0][2];
+	}
+};
+Tornado tornado;
 
 struct _Line {
 	GLfloat data[3][2][2][3];
@@ -238,20 +291,43 @@ GLvoid drawScene()
 	glUseProgram(s_program);
 
 	unsigned int modelSelected = glGetUniformLocation(s_program, "modelSelect"); //--- 버텍스 세이더에서 모델링 변환 위치 가져오기
-	glUniform1i(modelSelected, 0);
 
 	glm::mat4 backgroundModel = glm::mat4(1.0f);
+	glm::mat4 xyModel = glm::mat4(1.0f);
 	glm::mat4 firstModel = glm::mat4(1.0f);
 	glm::mat4 secondModel = glm::mat4(1.0f);
+
+	glUniform1i(modelSelected, 0);
 
 	backgroundModel = glm::rotate(backgroundModel, (float)glm::radians(30.0f), glm::vec3(1.0, 0.0, 0.0));
 	backgroundModel = glm::rotate(backgroundModel, (float)glm::radians(-30.0f), glm::vec3(0.0, 1.0, 0.0));
 	unsigned int modelLocation = glGetUniformLocation(s_program, "backgroundModelTransform"); //--- 버텍스 세이더에서 모델링 변환 위치 가져오기
 	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(backgroundModel)); //--- modelTransform 변수에 변환 값 적용하기
 
-	for (int i = 0; i < 3; i++) {
-		glBindVertexArray(va.line_vao[i]);
-		glDrawArrays(GL_LINES, 0, 2);
+	glBindVertexArray(va.line_vao[1]);
+	glDrawArrays(GL_LINES, 0, 2);
+
+
+	glUniform1i(modelSelected, 3);
+
+	xyModel = glm::rotate(xyModel, (float)glm::radians(30.0f), glm::vec3(1.0, 0.0, 0.0));
+	xyModel = glm::rotate(xyModel, (float)glm::radians(-30.0f), glm::vec3(0.0, 1.0, 0.0));
+	xyModel = glm::translate(xyModel, glm::vec3(0, rc.lTranslatePos, 0));
+	unsigned int xyLocation = glGetUniformLocation(s_program, "xzlineModelTransform"); //--- 버텍스 세이더에서 모델링 변환 위치 가져오기
+	glUniformMatrix4fv(xyLocation, 1, GL_FALSE, glm::value_ptr(xyModel)); //--- modelTransform 변수에 변환 값 적용하기
+
+	glBindVertexArray(va.line_vao[0]);
+	glDrawArrays(GL_LINES, 0, 2);
+	glBindVertexArray(va.line_vao[2]);
+	glDrawArrays(GL_LINES, 0, 2);
+
+	if (rc.rRotate) {
+		glPointSize(3.0);
+		glUniform1i(modelSelected, 0);
+		for (int i = 0; i < DOT_COUNT; i++) {
+			glBindVertexArray(va.vao[i]);
+			glDrawArrays(GL_POINTS, 0, 1);
+		}
 	}
 
 
@@ -280,7 +356,12 @@ GLvoid drawScene()
 	secondModel = glm::scale(secondModel, glm::vec3(rc.scaleByStandard, rc.scaleByStandard, rc.scaleByStandard));
 	secondModel = glm::rotate(secondModel, (float)glm::radians(30.0f), glm::vec3(1.0, 0.0, 0.0));
 	secondModel = glm::rotate(secondModel, (float)glm::radians(-30.0f), glm::vec3(0.0, 1.0, 0.0));
-	secondModel = glm::translate(secondModel, glm::vec3(rc.aTranslatePos, rc.bTranslatePos, rc.cTranslatePos));
+	if (rc.rRotate) {
+		secondModel = glm::translate(secondModel, glm::vec3(rc.xRotateObject, 0.0f, rc.zRotateObject));
+	}
+	else {
+		secondModel = glm::translate(secondModel, glm::vec3(rc.aTranslatePos, rc.bTranslatePos, rc.cTranslatePos));
+	}
 	secondModel = glm::scale(secondModel, glm::vec3(rc.scaleByObject, rc.scaleByObject, rc.scaleByObject));
 	secondModel = glm::rotate(secondModel, (float)glm::radians(-30.0f), glm::vec3(1.0, 0.0, 0.0));
 	secondModel = glm::rotate(secondModel, (float)glm::radians(30.0f), glm::vec3(0.0, 1.0, 0.0));
@@ -362,18 +443,27 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 	case '5':
 		rc.yTranslatePos += 0.01f;
 		rc.bTranslatePos += 0.01f;
+		rc.lTranslatePos += 0.01f;
 		break;
 	case '6':
 		rc.yTranslatePos -= 0.01f;
 		rc.bTranslatePos -= 0.01f;
+		rc.lTranslatePos -= 0.01f;
 		break;
 	case 'R':
 	case 'r':
-		rc.rRotate = true;
+		if (rc.rRotate) {
+			rc.rRotate = false;
+			tornado.loop = 0;
+		}
+		else {
+			rc.rRotate = true;
+		}
 		break;
 	case 'C':
 	case 'c':
 		rc.reset();
+		tornado.loop = 0;
 		break;
 	}
 	glutPostRedisplay();
@@ -381,7 +471,18 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 
 GLvoid TimerFunction(int value)
 {
-
+	if (rc.rRotate) {
+		if (tornado.loop == DOT_COUNT) {
+			tornado.loop = 0;
+			rc.xRotateObject = tornado.nextX();
+			rc.zRotateObject = tornado.nextZ();
+		}
+		else {
+			tornado.loop++;
+			rc.xRotateObject = tornado.nextX();
+			rc.zRotateObject = tornado.nextZ();
+		}
+	}
 	glutPostRedisplay();
 	glutTimerFunc(10, TimerFunction, value);
 	return;
@@ -394,6 +495,7 @@ GLvoid Reshape(int w, int h) //--- 콜백 함수: 다시 그리기 콜백 함수
 
 void initBuffer()
 {
+
 	glGenVertexArrays(3, va.line_vao);
 	for (int i = 0; i < 3; i++) {
 		glBindVertexArray(va.line_vao[i]);
@@ -413,6 +515,19 @@ void initBuffer()
 		for (int j = 0; j < 2; j++) {
 			glBindBuffer(GL_ARRAY_BUFFER, va.hexahedron_vbo[i][j]);
 			glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(GLfloat), hexa.data[i][j], GL_STATIC_DRAW);
+			glVertexAttribPointer(j, 3, GL_FLOAT, GL_FALSE, 0, 0);
+			glEnableVertexAttribArray(j);
+		}
+	}
+
+	glGenVertexArrays(DOT_COUNT, va.vao); 
+	for (int i = 0; i < DOT_COUNT; i++) {
+		glBindVertexArray(va.vao[i]);
+
+		glGenBuffers(2, va.vbo[i]);
+		for (int j = 0; j < 2; j++) {
+			glBindBuffer(GL_ARRAY_BUFFER, va.vbo[i][j]);
+			glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(GLfloat), tornado.data[i][j], GL_STATIC_DRAW);
 			glVertexAttribPointer(j, 3, GL_FLOAT, GL_FALSE, 0, 0);
 			glEnableVertexAttribArray(j);
 		}

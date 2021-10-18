@@ -37,16 +37,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="initShader.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="make_shaderProgram.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="shader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="make_shaderProgram.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="initShader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
