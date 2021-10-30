@@ -2,7 +2,9 @@
 
 Crane_Mid::Crane_Mid()
 {
-	HeightFromGround = 0.3f;
+	HeightFromGround = 0.2f;
+	rMove = 0;
+	rMovePos = 0.0f;
 
 	// Àü¸é ÁÂÇ¥
 	data[0][0][0][0][0] = -0.2f, data[0][0][0][0][1] = -0.1f, data[0][0][0][0][2] = 0.2f;
@@ -137,9 +139,24 @@ void Crane_Mid::draw()
 	}
 }
 
+void Crane_Mid::putFactor(glm::mat4 inputFactor)
+{
+	myFactor = inputFactor;
+	myFactor = glm::translate(myFactor, glm::vec3(0, HeightFromGround, 0));
+	myFactor = glm::rotate(myFactor, glm::radians(rMovePos), glm::vec3(0.0f, 1.0f, 0.0f));
+}
+
 glm::mat4 Crane_Mid::getFactor()
 {
-	glm::mat4 myFactor = glm::mat4(1.0f);
-
 	return myFactor;
+}
+
+void Crane_Mid::update()
+{
+	if (rMove == 1) {
+		rMovePos += 1.0f;
+	}
+	else if (rMove == 2) {
+		rMovePos -= 1.0f;
+	}
 }

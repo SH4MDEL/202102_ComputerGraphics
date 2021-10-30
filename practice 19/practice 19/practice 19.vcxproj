@@ -150,6 +150,7 @@
     <ClInclude Include="make_shaderProgram.h" />
     <ClInclude Include="make_vertexShaders.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.glsl" />
@@ -166,6 +167,7 @@
     <ClCompile Include="make_fragmentShaders.cpp" />
     <ClCompile Include="make_shaderProgram.cpp" />
     <ClCompile Include="make_vertexShaders.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />

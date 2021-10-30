@@ -3,6 +3,8 @@
 Crane_Bottom::Crane_Bottom()
 {
 	HeightFromGround = 0.1f;
+	zMove = 0;
+	zMovePos = 0.0f;
 
 	// Àü¸é ÁÂÇ¥
 	data[0][0][0][0][0] = -0.3f,	data[0][0][0][0][1] = -0.1f,	data[0][0][0][0][2] = 0.3f;
@@ -137,9 +139,31 @@ void Crane_Bottom::draw()
 	}
 }
 
+void Crane_Bottom::putFactor(glm::mat4 inputFactor)
+{
+	myFactor = inputFactor;
+	myFactor = glm::translate(myFactor, glm::vec3(0, HeightFromGround, zMovePos));
+}
+
 glm::mat4 Crane_Bottom::getFactor()
 {
-	glm::mat4 myFactor = glm::mat4(1.0f);
-
 	return myFactor;
+}
+
+void Crane_Bottom::update()
+{
+	if (zMove == 1 && zMovePos + 0.01f >= 0.5f) {
+		zMove = 2;
+		zMovePos -= 0.01f;
+	}
+	else if (zMove == 1) {
+		zMovePos += 0.01f;
+	}
+	else if (zMove == 2 && zMovePos - 0.01f <= -0.5f) {
+		zMove = 1;
+		zMovePos += 0.01f;
+	}
+	else if (zMove == 2) {
+		zMovePos -= 0.01f;
+	}
 }

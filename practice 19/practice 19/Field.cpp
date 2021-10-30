@@ -38,9 +38,12 @@ void Field::draw()
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
+void Field::putFactor(glm::mat4 inputFactor)
+{
+	myFactor = inputFactor;
+}
+
 glm::mat4 Field::getFactor()
 {
-	glm::mat4 myFactor = glm::mat4(1.0f);
-
 	return myFactor;
 }

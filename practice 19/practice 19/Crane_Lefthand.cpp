@@ -2,7 +2,9 @@
 
 Crane_Lefthand::Crane_Lefthand()
 {
-	HeightFromGround = 0.6f;
+	HeightFromGround = 0.3f;
+	rMove = 0;
+	rMovePos = 0.0f;
 
 	// Àü¸é ÁÂÇ¥
 	data[0][0][0][0][0] = -0.05f, data[0][0][0][0][1] = -0.2f, data[0][0][0][0][2] = 0.05f;
@@ -137,9 +139,34 @@ void Crane_Lefthand::draw()
 	}
 }
 
+void Crane_Lefthand::putFactor(glm::mat4 inputFactor)
+{
+	myFactor = inputFactor;
+	myFactor = glm::translate(myFactor, glm::vec3(-0.1f, HeightFromGround, 0));
+	myFactor = glm::translate(myFactor, glm::vec3(0.0f, -0.2f, 0.0f));
+	myFactor = glm::rotate(myFactor, glm::radians(rMovePos), glm::vec3(1.0f, 0.0f, 0.0f));
+	myFactor = glm::translate(myFactor, glm::vec3(0.0f, 0.2f, 0.0f));
+}
+
 glm::mat4 Crane_Lefthand::getFactor()
 {
-	glm::mat4 myFactor = glm::mat4(1.0f);
-
 	return myFactor;
+}
+
+void Crane_Lefthand::update()
+{
+	if (rMove == 1 && rMovePos + 1.0f >= 90.0f) {
+		rMove = 2;
+		rMovePos -= 1.0f;
+	}
+	else if (rMove == 1) {
+		rMovePos += 1.0f;
+	}
+	else if (rMove == 2 && rMovePos - 1.0f <= -90.0f) {
+		rMove = 1;
+		rMovePos += 1.0f;
+	}
+	else if (rMove == 2) {
+		rMovePos -= 1.0f;
+	}
 }

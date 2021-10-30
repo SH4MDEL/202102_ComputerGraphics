@@ -25,6 +25,12 @@
     <Filter Include="헤더 파일\Object">
       <UniqueIdentifier>{355e4aeb-ab16-4a20-a01d-3ab3852e9536}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Camera">
+      <UniqueIdentifier>{cd970fca-5cc8-4785-9e3a-aa8d14fb3124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Camera">
+      <UniqueIdentifier>{8f51332a-02fa-41e1-825d-3d9c1ce0656a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -56,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="Crane_Righthand.h">
       <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>헤더 파일\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="Crane_Righthand.cpp">
       <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>소스 파일\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
