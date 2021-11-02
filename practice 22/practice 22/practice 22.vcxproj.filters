@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Shader">
+      <UniqueIdentifier>{c0d39b5a-5abc-4323-866e-e23118b9e8f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Object">
+      <UniqueIdentifier>{11efd9b5-dc64-4731-9e0b-c989ac70b4db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Shader">
+      <UniqueIdentifier>{697eb0b7-2e64-432a-b033-0fe67ef5e7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Object">
+      <UniqueIdentifier>{f8fea4a5-a323-47d0-a983-0d96780ea209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Object\Robot">
+      <UniqueIdentifier>{1a488865-3677-46e1-9ac8-507ec15da749}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Object\Robot">
+      <UniqueIdentifier>{c4a19518-bf28-4c3f-9abd-5b43af3005c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="filetobuf.cpp">
+      <Filter>소스 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="make_fragmentShaders.cpp">
+      <Filter>소스 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="make_shaderProgram.cpp">
+      <Filter>소스 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="make_vertexShaders.cpp">
+      <Filter>소스 파일\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_body.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_head.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_leftarm.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_leftleg.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_rightarm.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_rightleg.cpp">
+      <Filter>소스 파일\Object\Robot</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="make_fragmentShaders.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="make_shaderProgram.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="make_vertexShaders.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="filetobuf.h">
+      <Filter>헤더 파일\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_body.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_head.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_leftarm.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_leftleg.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_rightarm.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot_rightleg.h">
+      <Filter>헤더 파일\Object\Robot</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment.glsl">
+      <Filter>소스 파일\Shader</Filter>
+    </None>
+    <None Include="vertex.glsl">
+      <Filter>소스 파일\Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>헤더 파일</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

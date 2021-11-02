@@ -65,7 +65,20 @@ struct ObjectManager {
 		left.initBuffer();
 		right.initBuffer();
 	}
+
+	void allStop() {
+		bottom.zMove = false;
+		mid.rMove = false;
+		left.rMove = false;
+		right.rMove = false;
+	}
 	
+	void allReset() {
+		bottom.allReset();
+		mid.allReset();
+		left.allReset();
+		right.allReset();
+	}
 };
 ObjectManager om;
 
@@ -113,7 +126,7 @@ GLvoid drawScene()
 	glUseProgram(s_program);
 
 	glm::vec3 cameraPos = glm::vec3(rc.x + 3.4 * cos(2 * M_PI / 360.0f * rc.rotationPos), 1.5f, rc.z + 3.4 * sin(2 * M_PI / 360.0f * rc.rotationPos)); //--- 카메라 위치
-	glm::vec3 cameraDirection = glm::vec3(3.4 * cos(2 * M_PI / 360.0f * -rc.rotationPos), 0.0f, 3.4 * sin(2 * M_PI / 360.0f * -rc.rotationPos)); //--- 카메라 바라보는 방향
+	glm::vec3 cameraDirection = glm::vec3(100 * cos(2 * M_PI / 360.0f * rc.revolvePos), 0.0f, 100 * sin(2 * M_PI / 360.0f * rc.revolvePos)); //--- 카메라 바라보는 방향
 	glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f); //--- 카메라 위쪽 방향
 	glm::mat4 view = glm::mat4(1.0f);
 	view = glm::lookAt(cameraPos, cameraDirection, cameraUp);
@@ -221,26 +234,26 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		rc.x -= 0.1f;
 		break;
 	case 'y':	// 카메라 기준 y축에 대해서 회전
-		rc.rotation = false;
-		rc.rotationPos = 270.0f;
+		/*rc.rotation = false;
+		rc.rotationPos = 270.0f;*/
 		rc.revolvePos += 1.0f;
 		break;
 	case 'Y':
-		rc.rotation = false;
-		rc.rotationPos = 270.0f;
+		/*rc.rotation = false;
+		rc.rotationPos = 270.0f;*/
 		rc.revolvePos -= 1.0f;
 		break;
 	case 'r':	// 화면의 중심의 y축에 대하여 카메라가 회전(중심에 대하여 공전)
-		rc.revolvePos = 90.0f;
+		//rc.revolvePos = 90.0f;
 		rc.rotationPos += 1.0f;
 		break;
 	case 'R':
-		rc.revolvePos = 90.0f;
+		//rc.revolvePos = 90.0f;
 		rc.rotationPos -= 1.0f;
 		break;
 	case 'a':	// r 명령어와 같이 화면의 중심의 축에 대하여 카메라가 회전하는 애니메이션을 진행한다/멈춘다
 	case 'A':
-		rc.revolvePos = 90.0f;
+		///rc.revolvePos = 90.0f;
 		if (rc.rotation) {
 			rc.rotation = false;
 		}
@@ -250,15 +263,18 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		break;
 	case 's':	// 모든 움직임 멈추기
 	case 'S':
-		
+		rc.rotation = false;
+		om.allStop();
 		break;
 	case 'c':	// 모든 움직임 초기화
 	case 'C':
-
+		rc.rotation = false;
+		om.allReset();
+		rc.reset();
 		break;
 	case 'q':	// 프로그램 종료
 	case 'Q':
-		
+		glutLeaveMainLoop();
 		break;
 	}
 	glutPostRedisplay();
