@@ -12,6 +12,9 @@ struct Stage
 	// 기타 필요한 변수들 생성
 	GLfloat xPos, zPos, rPos;
 	GLfloat HeightFromGround;
+	GLint stageStatus;
+	bool opened;
+	GLfloat openPos;
 	////////////////////////////////////////////////////////////////////////
 
 	Stage();						// 생성자
@@ -26,7 +29,10 @@ struct Stage
 
 	////////////////////////////////////////////////////////////////////////
 	// 기타 필요한 함수들 생성
-
+	glm::mat4 getleftDoorFactor();
+	glm::mat4 getrightDoorFactor();
+	void drawleft();
+	void drawright();
 	////////////////////////////////////////////////////////////////////////
 };
 

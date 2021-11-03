@@ -17,10 +17,13 @@ void Ball::allReset()
 	xPos = coordinate(gen) / 100.0f, yPos = coordinate(gen) / 100.0f, zPos = coordinate(gen) / 100.0f;
 }
 
-void Ball::update()
+void Ball::update(bool opened)
 {
 	if (xDir) {
-		if (xPos + 0.1f + 0.01f >= 1.0f) {
+		if (opened) {
+			xPos += 0.01f;
+		}
+		else if (xPos + 0.1f + 0.01f >= 1.0f) {
 			xDir = false;
 			xPos = 0.99f;
 		}
@@ -38,7 +41,10 @@ void Ball::update()
 		}
 	}
 	if (zDir) {
-		if (zPos + 0.1f + 0.01f >= 1.0f) {
+		if (opened) {
+			zPos += 0.01f;
+		}
+		else if (zPos + 0.1f + 0.01f >= 1.0f) {
 			zDir = false;
 			zPos = 0.99f;
 		}

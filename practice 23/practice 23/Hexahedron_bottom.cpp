@@ -170,9 +170,120 @@ void Hexahedron_bottom::allReset()
 	HeightFromGround = -0.9f;
 }
 
-void Hexahedron_bottom::update()
+void Hexahedron_bottom::update(GLint stageStatus, bool opened)
 {
-
+	if (stageStatus == 0) {
+		if (opened) {
+			zPos += 0.04f;
+		}
+		else if (zPos + 0.04f > 0.9f) {
+			zPos = 0.9f;
+		}
+		else {
+			zPos += 0.04f;
+		}
+	}
+	else if (stageStatus == 1) {
+		if (opened) {
+			xPos -= 0.04f;
+		}
+		else if (xPos - 0.04f < -0.9f) {
+			xPos = -0.9f;
+		}
+		else {
+			xPos -= 0.04f;
+		}
+		if (opened) {
+			zPos += 0.04f;
+		}
+		else if (zPos + 0.04f > 0.9f) {
+			zPos = 0.9f;
+		}
+		else {
+			zPos += 0.04f;
+		}
+	}
+	else if (stageStatus == 2) {
+		if (xPos - 0.04f < -0.9f) {
+			xPos = -0.9f;
+		}
+		else {
+			xPos -= 0.04f;
+		}
+	}
+	else if (stageStatus == 3) {
+		if (xPos - 0.04f < -0.9f) {
+			xPos = -0.9f;
+		}
+		else {
+			xPos -= 0.04f;
+		}
+		if (zPos - 0.04f < -0.9f) {
+			zPos = -0.9f;
+		}
+		else {
+			zPos -= 0.04f;
+		}
+	}
+	else if (stageStatus == 4) {
+		if (zPos - 0.04f < -0.9f) {
+			zPos = -0.9f;
+		}
+		else {
+			zPos -= 0.04f;
+		}
+	}
+	else if (stageStatus == 5) {
+		if (opened) {
+			xPos += 0.04f;
+		}
+		else if (xPos + 0.04f > 0.9f) {
+			xPos = 0.9f;
+		}
+		else {
+			xPos += 0.04f;
+		}
+		if (opened) {
+			zPos -= 0.04f;
+		}
+		else if (zPos - 0.04f < -0.9f) {
+			zPos = -0.9f;
+		}
+		else {
+			zPos -= 0.04f;
+		}
+	}
+	else if (stageStatus == 6) {
+		if (opened) {
+			xPos += 0.04f;
+		}
+		else if (xPos + 0.04f > 0.9f) {
+			xPos = 0.9f;
+		}
+		else {
+			xPos += 0.04f;
+		}
+	}
+	else if (stageStatus == 7) {
+		if (opened) {
+			xPos += 0.04f;
+		}
+		else if (xPos + 0.04f > 0.9f) {
+			xPos = 0.9f;
+		}
+		else {
+			xPos += 0.04f;
+		}
+		if (opened) {
+			zPos += 0.04f;
+		}
+		else if (zPos + 0.04f > 0.9f) {
+			zPos = 0.9f;
+		}
+		else {
+			zPos += 0.04f;
+		}
+	}
 }
 
 void Hexahedron_bottom::putFactor(glm::mat4 inputFactor)

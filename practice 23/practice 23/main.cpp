@@ -137,6 +137,12 @@ GLvoid drawScene()
 	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(om.stage.getFactor()));
 	om.stage.draw();
 
+	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(om.stage.getleftDoorFactor()));
+	om.stage.drawleft();
+
+	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(om.stage.getrightDoorFactor()));
+	om.stage.drawright();
+
 	for (int i = 0; i < 5; i++) {
 		om.ball[i].putFactor(om.stage.getFactor());
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(om.ball[i].getFactor()));
@@ -166,10 +172,10 @@ GLvoid motion(int x, int y)
 	rc.mPos = (((GLclampf)x - ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_WIDTH) / (GLclampf)2.0));
 	//yPos = (((GLclampf)y - ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0)) / ((GLclampf)glutGet(GLUT_WINDOW_HEIGHT) / (GLclampf)2.0));
 	if (rc.mPos - rc.premPos > 0.0f) {
-		om.stage.rPos += (rc.mPos - rc.premPos) * 50.0f;
+		om.stage.rPos += (rc.mPos - rc.premPos) * 250.0f;
 	}
 	else if (rc.mPos - rc.premPos < 0.0f) {
-		om.stage.rPos += (rc.mPos - rc.premPos) * 50.0f;
+		om.stage.rPos += (rc.mPos - rc.premPos) * 250.0f;
 	}
 	rc.premPos = rc.mPos;
 	glutPostRedisplay();
@@ -193,7 +199,6 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		else {
 			rc.nextBall++;
 		}
-
 		break;
 	case 'r':	// r 명령어와 같이 화면의 중심의 축에 대하여 카메라가 회전하는 애니메이션을 진행한다/멈춘다
 	case 'R':
@@ -204,10 +209,33 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 			rc.rotation = true;
 		}
 		break;
+	case 'y':
+		rc.rotationPos += 1.0f;
+		break;
+	case 'Y':
+		rc.rotationPos -= 1.0f;
+		break;
+	case 'o':
+	case 'O':
+		if (om.stage.opened) {
+			om.stage.opened = false;
+			om.allReset();
+			rc.reset();
+			for (int i = 0; i < 5; i++) {
+				om.ball[i].allReset();
+			}
+		}
+		else {
+			om.stage.opened = true;
+		}
+		break;
 	case 'i':	// 모든 움직임 초기화
 	case 'I':
 		om.allReset();
 		rc.reset();
+		for (int i = 0; i < 5; i++) {
+			om.ball[i].allReset();
+		}
 		break;
 	case 'q':	// 프로그램 종료
 	case 'Q':
@@ -224,9 +252,9 @@ GLvoid TimerFunction(int value)
 	}
 	om.stage.update();
 	for (int i = 0; i < 5; i++) {
-		om.ball[i].update();
+		om.ball[i].update(om.stage.opened);
 	}
-	
+	om.hb.update(om.stage.stageStatus, om.stage.opened);
 	glutPostRedisplay();
 	glutTimerFunc(10, TimerFunction, value);
 	return;

@@ -139,21 +139,78 @@ void Stage::initBuffer()
 
 void Stage::draw()
 {
-	for (int i = 0; i < 5; i++) {
-			glBindVertexArray(vao[i]);
-			glDrawArrays(GL_TRIANGLES, 0, 6);
-	}
+	glBindVertexArray(vao[1]);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(vao[2]);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(vao[3]);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
+
+void Stage::drawleft()
+{
+	glBindVertexArray(vao[0]);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void Stage::drawright()
+{
+	glBindVertexArray(vao[4]);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+
 
 void Stage::allReset()
 {
-	xPos = 0.0f, zPos = 0.0f, rPos = 0.0f;
+	xPos = 0.0f, zPos = 0.0f, rPos = 720.0f;
 	HeightFromGround = 0.1f;
+	stageStatus = 0;
+	opened = false;
 }
 
 void Stage::update()
 {
-
+	if ((int)rPos % 360 == 0) {
+		stageStatus = 0;
+	}
+	else if ((int)rPos % 360 > 0 && (int)rPos % 360 < 90) {
+		stageStatus = 1;
+	}
+	else if ((int)rPos % 360 == 90) {
+		stageStatus = 2;
+	}
+	else if ((int)rPos % 360 > 90 && (int)rPos % 360 < 180) {
+		stageStatus = 3;
+	}
+	else if ((int)rPos % 360 == 180) {
+		stageStatus = 4;
+	}
+	else if ((int)rPos % 360 > 180 && (int)rPos % 360 < 270) {
+		stageStatus = 5;
+	}
+	else if ((int)rPos % 360 == 270) {
+		stageStatus = 6;
+	}
+	else if ((int)rPos % 360 > 270 && (int)rPos % 360 < 360) {
+		stageStatus = 7;
+	}
+	if (opened == true) {
+		if (openPos + 0.1f >= 2.0f) {
+			openPos = 2.0f;
+		}
+		else {
+			openPos += 0.1f;
+		}
+	}
+	else {
+		if (openPos - 0.1f <= 0.0f) {
+			openPos = 0.0f;
+		}
+		else {
+			openPos -= 0.1f;
+		}
+	}
 }
 
 void Stage::putFactor(glm::mat4 inputFactor)
@@ -161,6 +218,16 @@ void Stage::putFactor(glm::mat4 inputFactor)
 	myFactor = inputFactor;
 	myFactor = glm::translate(myFactor, glm::vec3(0.0f, 0.0f, 0.0f));	// 기본으로 세팅할 객체의 위치
 	myFactor = glm::rotate(myFactor, glm::radians(rPos), glm::vec3(0.0f, 1.0f, 0.0f));
+}
+
+glm::mat4 Stage::getleftDoorFactor()
+{
+	return glm::translate(myFactor, glm::vec3(-openPos, 0.0f, 0.0f));	// 기본으로 세팅할 객체의 위치
+}
+
+glm::mat4 Stage::getrightDoorFactor()
+{
+	return glm::translate(myFactor, glm::vec3(0.0f, 0.0f, -openPos));	// 기본으로 세팅할 객체의 위치
 }
 
 glm::mat4 Stage::getFactor()
