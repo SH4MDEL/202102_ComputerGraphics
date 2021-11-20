@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "ObjRead.h"
 
-struct Sun
+struct Earth
 {
 	objRead objReader;
 	GLuint object;
@@ -11,7 +11,7 @@ struct Sun
 	int objColorLocation;
 
 	glm::mat4 myFactor;
-	Sun();
+	Earth();
 
 	void initBuffer(int s_program);
 	void draw();
@@ -22,3 +22,4 @@ struct Sun
 	void putFactor(glm::mat4 inputFactor);	// 이동 정보를 바꿉니다.
 	glm::mat4 getFactor();					// 이동 정보를 반환합니다.
 };
+

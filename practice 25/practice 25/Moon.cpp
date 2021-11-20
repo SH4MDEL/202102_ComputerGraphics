@@ -1,11 +1,11 @@
-#include "Sun.h"
+#include "Moon.h"
 
-Sun::Sun()
+Moon::Moon()
 {
 	allReset();
 }
 
-void Sun::initBuffer(int s_program)
+void Moon::initBuffer(int s_program)
 {
 	object = objReader.loadObj_normalize_center("sphere.obj");
 
@@ -32,30 +32,31 @@ void Sun::initBuffer(int s_program)
 	objColorLocation = glGetUniformLocation(s_program, "objectColor"); //--- object Color°ª Àü´Þ
 }
 
-void Sun::draw()
+void Moon::draw()
 {
-	glUniform3f(objColorLocation, 1.0f, 0.1f, 0.1f);
+	glUniform3f(objColorLocation, 1.0f, 1.0f, 0.1f);
 	glBindVertexArray(vao[0]);
 	glDrawArrays(GL_TRIANGLES, 0, object);
 }
 
-void Sun::allReset()
+void Moon::allReset()
 {
-	
+
 }
 
-void Sun::update()
+void Moon::update()
 {
-	
+
 }
 
-void Sun::putFactor(glm::mat4 inputFactor)
+void Moon::putFactor(glm::mat4 inputFactor)
 {
 	myFactor = inputFactor;
-	myFactor = scale(myFactor, glm::vec3(0.4f, 0.4f, 0.4f));
+	myFactor = glm::translate(myFactor, glm::vec3(-2.0f, 0.0f, 0.0f));
+	myFactor = scale(myFactor, glm::vec3(0.1f, 0.1f, 0.1f));
 }
 
-glm::mat4 Sun::getFactor()
+glm::mat4 Moon::getFactor()
 {
 	return myFactor;
 }

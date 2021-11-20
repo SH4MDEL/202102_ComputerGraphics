@@ -27,6 +27,7 @@ struct Light
 	GLfloat rotatePos, zPos;
 	GLint colorType;
 	GLfloat rCol, gCol, bCol;
+	bool lightOn;
 	
 };
 

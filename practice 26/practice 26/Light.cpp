@@ -109,7 +109,7 @@ Light::Light()
 	data[4][0][1][1][0] = back_left_down_x, data[4][0][1][1][1] = back_left_down_y, data[4][0][1][1][2] = back_left_down_z;
 	data[4][0][1][2][0] = back_right_down_x, data[4][0][1][2][1] = back_right_down_y, data[4][0][1][2][2] = back_right_down_z;
 
-	// 하단 색상
+	// 하단 노멀
 	data[4][1][0][0][0] = 0.0f, data[4][1][0][0][1] = -1.0f, data[4][1][0][0][2] = 0.0f;
 	data[4][1][0][1][0] = 0.0f, data[4][1][0][1][1] = -1.0f, data[4][1][0][1][2] = 0.0f;
 	data[4][1][0][2][0] = 0.0f, data[4][1][0][2][1] = -1.0f, data[4][1][0][2][2] = 0.0f;
@@ -127,7 +127,7 @@ Light::Light()
 	data[5][0][1][1][0] = back_right_top_x, data[5][0][1][1][1] = back_right_top_y, data[5][0][1][1][2] = back_right_top_z;
 	data[5][0][1][2][0] = front_right_top_x, data[5][0][1][2][1] = front_right_top_y, data[5][0][1][2][2] = front_right_top_z;
 
-	// 우측 색상
+	// 우측 노멀
 	data[5][1][0][0][0] = 1.0f, data[5][1][0][0][1] = 0.0f, data[5][1][0][0][2] = 0.0f;
 	data[5][1][0][1][0] = 1.0f, data[5][1][0][1][1] = 0.0f, data[5][1][0][1][2] = 0.0f;
 	data[5][1][0][2][0] = 1.0f, data[5][1][0][2][1] = 0.0f, data[5][1][0][2][2] = 0.0f;
@@ -164,7 +164,7 @@ void Light::initBuffer(GLuint s_program)
 
 void Light::draw()
 {
-	glUniform3f(objColorLocation, 0.6f, 0.6f, 0.6f);
+	glUniform3f(objColorLocation, 1.0f, 1.0f, 1.0f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -178,6 +178,7 @@ void Light::allReset()
 	zPos = 2.5f;
 	colorType = 1;
 	rCol = 1.0f, gCol = 0.3f, bCol = 0.3f;
+	lightOn = true;
 }
 
 void Light::update()
@@ -185,14 +186,19 @@ void Light::update()
 	if (rotate) {
 		rotatePos += 1.0f;
 	}
-	glUniform3f(lightPosLocation, (zPos - 0.2f) * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.0f, (zPos - 0.2f) * sin(2 * 3.14159265358979 / 360 * rotatePos));
-	glUniform3f(lightColorLocation, rCol, gCol, bCol);
+	if (lightOn) {
+		glUniform3f(lightColorLocation, rCol, gCol, bCol);
+	}
+	else {
+		glUniform3f(lightColorLocation, 0.0f, 0.0f, 0.0f);
+	}
+	glUniform3f(lightPosLocation, (zPos - 0.2f) * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.5f, (zPos - 0.2f) * sin(2 * 3.14159265358979 / 360 * rotatePos));
 }
 
 void Light::putFactor(glm::mat4 inputFactor)
 {
 	myFactor = inputFactor;
-	myFactor = glm::translate(myFactor, glm::vec3(zPos * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.0f, zPos * sin(2 * 3.14159265358979 / 360 * rotatePos)));
+	myFactor = glm::translate(myFactor, glm::vec3(zPos * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.5f, zPos * sin(2 * 3.14159265358979 / 360 * rotatePos)));
 }
 
 glm::mat4 Light::getFactor()
