@@ -1,13 +1,13 @@
-#include "Earth.h"
+#include "Sun.h"
 
-Earth::Earth()
+Sun::Sun()
 {
 	allReset();
 }
 
-void Earth::initBuffer(int s_program)
+void Sun::initBuffer(int s_program, GLint object)
 {
-	object = objReader.loadObj_normalize_center("sphere.obj");
+	this->object = objReader.loadObj_normalize_center("sphere.obj");
 
 	//// 5.1. VAO 객체 생성 및 바인딩
 	glGenVertexArrays(3, vao);
@@ -32,31 +32,31 @@ void Earth::initBuffer(int s_program)
 	objColorLocation = glGetUniformLocation(s_program, "objectColor"); //--- object Color값 전달
 }
 
-void Earth::draw()
+void Sun::draw()
 {
-	glUniform3f(objColorLocation, 0.1f, 0.1f, 1.0f);
+	glUniform3f(objColorLocation, 1.0f, 0.1f, 0.1f);
 	glBindVertexArray(vao[0]);
 	glDrawArrays(GL_TRIANGLES, 0, object);
 }
 
-void Earth::allReset()
+void Sun::allReset()
 {
-
+	rotatePos = 0.0f;
 }
 
-void Earth::update()
+void Sun::update()
 {
-
+	rotatePos += 1.3f;
 }
 
-void Earth::putFactor(glm::mat4 inputFactor)
+void Sun::putFactor(glm::mat4 inputFactor)
 {
 	myFactor = inputFactor;
-	myFactor = glm::translate(myFactor, glm::vec3(-1.5f, 0.0f, 0.0f));
-	myFactor = scale(myFactor, glm::vec3(0.2f, 0.2f, 0.2f));
+	myFactor = glm::translate(myFactor, glm::vec3(5.0f * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.0f, 5.0f * sin(2 * 3.14159265358979 / 360 * rotatePos)));
+	myFactor = scale(myFactor, glm::vec3(0.4f, 0.4f, 0.4f));
 }
 
-glm::mat4 Earth::getFactor()
+glm::mat4 Sun::getFactor()
 {
 	return myFactor;
 }

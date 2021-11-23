@@ -1,4 +1,4 @@
-﻿#version 330 core
+#version 330 core
 in vec3 FragPos; //--- 노멀값을 계산하기 위해 객체의 위치값을 버텍스 세이더에서 받아온다.
 in vec3 Normal;
 
