@@ -6,7 +6,7 @@ struct Earth
 {
 	objRead objReader;
 	GLuint object;
-	GLuint vao[3], vbo[3][2];
+	GLuint vao, vbo[2];
 
 	int objColorLocation;
 
