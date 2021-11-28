@@ -36,7 +36,7 @@ void Snowflake::initBuffer(int s_program, GLint object)
 
 void Snowflake::draw()
 {
-	glUniform3f(objColorLocation, 5.0f, 5.0f, 5.0f);
+	glUniform4f(objColorLocation, 5.0f, 5.0f, 5.0f, 1.0f);
 	glBindVertexArray(vao[0]);
 	glDrawArrays(GL_TRIANGLES, 0, object);
 }

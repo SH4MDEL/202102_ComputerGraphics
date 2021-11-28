@@ -1,11 +1,11 @@
-#include "Light.h"
+#include "Hexahedron.h"
 
-Light::Light()
+Hexahedron::Hexahedron()
 {
 
 	allReset();
 
-	GLfloat linear = 0.05f;	// 정육면체를 만들고 싶을 때 원하는 길이의 절반을 입력해줍니다.
+	GLfloat linear = 0.2f;	// 정육면체를 만들고 싶을 때 원하는 길이의 절반을 입력해줍니다.
 
 	GLfloat front_left_down_x = -linear, front_left_down_y = -linear, front_left_down_z = linear;		// 정육면체를 만들고 싶을 때 주석 해제합니다.
 	GLfloat front_left_top_x = -linear, front_left_top_y = linear, front_left_top_z = linear;
@@ -28,13 +28,13 @@ Light::Light()
 	//printf("%d\n", color(gen));
 
 	// 전면 좌표
-	data[0][0][0][0][0] = front_left_down_x, data[0][0][0][0][1] = front_left_down_y, data[0][0][0][0][2] = front_left_down_z;
-	data[0][0][0][1][0] = front_right_down_x, data[0][0][0][1][1] = front_right_down_y, data[0][0][0][1][2] = front_right_down_z;
-	data[0][0][0][2][0] = front_left_top_x, data[0][0][0][2][1] = front_left_top_y, data[0][0][0][2][2] = front_left_top_z;
+	data[0][0][0][0][0] = front_left_down_x, data[0][0][0][0][1] = 5 * front_left_down_y, data[0][0][0][0][2] = front_left_down_z;
+	data[0][0][0][1][0] = front_right_down_x, data[0][0][0][1][1] = 5 * front_right_down_y, data[0][0][0][1][2] = front_right_down_z;
+	data[0][0][0][2][0] = front_left_top_x, data[0][0][0][2][1] = 5 * front_left_top_y, data[0][0][0][2][2] = front_left_top_z;
 
-	data[0][0][1][0][0] = front_left_top_x, data[0][0][1][0][1] = front_left_top_y, data[0][0][1][0][2] = front_left_top_z;
-	data[0][0][1][1][0] = front_right_down_x, data[0][0][1][1][1] = front_right_down_y, data[0][0][1][1][2] = front_right_down_z;
-	data[0][0][1][2][0] = front_right_top_x, data[0][0][1][2][1] = front_right_top_y, data[0][0][1][2][2] = front_right_top_z;
+	data[0][0][1][0][0] = front_left_top_x, data[0][0][1][0][1] = 5 * front_left_top_y, data[0][0][1][0][2] = front_left_top_z;
+	data[0][0][1][1][0] = front_right_down_x, data[0][0][1][1][1] = 5 * front_right_down_y, data[0][0][1][1][2] = front_right_down_z;
+	data[0][0][1][2][0] = front_right_top_x, data[0][0][1][2][1] = 5 * front_right_top_y, data[0][0][1][2][2] = front_right_top_z;
 
 	// 전면 노멀
 	data[0][1][0][0][0] = 0.0f, data[0][1][0][0][1] = 0.0f, data[0][1][0][0][2] = 1.0f;
@@ -47,13 +47,13 @@ Light::Light()
 
 
 	// 상단 좌표
-	data[1][0][0][0][0] = front_right_top_x, data[1][0][0][0][1] = front_right_top_y, data[1][0][0][0][2] = front_right_top_z;
-	data[1][0][0][1][0] = back_right_top_x, data[1][0][0][1][1] = back_right_top_y, data[1][0][0][1][2] = back_right_top_z;
-	data[1][0][0][2][0] = front_left_top_x, data[1][0][0][2][1] = front_left_top_y, data[1][0][0][2][2] = front_left_top_z;
+	data[1][0][0][0][0] = front_right_top_x, data[1][0][0][0][1] = 5 * front_right_top_y, data[1][0][0][0][2] = front_right_top_z;
+	data[1][0][0][1][0] = back_right_top_x, data[1][0][0][1][1] = 5 * back_right_top_y, data[1][0][0][1][2] = back_right_top_z;
+	data[1][0][0][2][0] = front_left_top_x, data[1][0][0][2][1] = 5 * front_left_top_y, data[1][0][0][2][2] = front_left_top_z;
 
-	data[1][0][1][0][0] = front_left_top_x, data[1][0][1][0][1] = front_left_top_y, data[1][0][1][0][2] = front_left_top_z;
-	data[1][0][1][1][0] = back_right_top_x, data[1][0][1][1][1] = back_right_top_y, data[1][0][1][1][2] = back_right_top_z;
-	data[1][0][1][2][0] = back_left_top_x, data[1][0][1][2][1] = back_left_top_y, data[1][0][1][2][2] = back_left_top_z;
+	data[1][0][1][0][0] = front_left_top_x, data[1][0][1][0][1] = 5 * front_left_top_y, data[1][0][1][0][2] = front_left_top_z;
+	data[1][0][1][1][0] = back_right_top_x, data[1][0][1][1][1] = 5 * back_right_top_y, data[1][0][1][1][2] = back_right_top_z;
+	data[1][0][1][2][0] = back_left_top_x, data[1][0][1][2][1] = 5 * back_left_top_y, data[1][0][1][2][2] = back_left_top_z;
 
 	// 상단 노멀
 	data[1][1][0][0][0] = 0.0f, data[1][1][0][0][1] = 1.0f, data[1][1][0][0][2] = 0.0f;
@@ -65,13 +65,13 @@ Light::Light()
 	data[1][1][1][2][0] = 0.0f, data[1][1][1][2][1] = 1.0f, data[1][1][1][2][2] = 0.0f;
 
 	// 좌측 좌표
-	data[2][0][0][0][0] = back_left_top_x, data[2][0][0][0][1] = back_left_top_y, data[2][0][0][0][2] = back_left_top_z;
-	data[2][0][0][1][0] = back_left_down_x, data[2][0][0][1][1] = back_left_down_y, data[2][0][0][1][2] = back_left_down_z;
-	data[2][0][0][2][0] = front_left_down_x, data[2][0][0][2][1] = front_left_down_y, data[2][0][0][2][2] = front_left_down_z;
+	data[2][0][0][0][0] = back_left_top_x, data[2][0][0][0][1] = 5 * back_left_top_y, data[2][0][0][0][2] = back_left_top_z;
+	data[2][0][0][1][0] = back_left_down_x, data[2][0][0][1][1] = 5 * back_left_down_y, data[2][0][0][1][2] = back_left_down_z;
+	data[2][0][0][2][0] = front_left_down_x, data[2][0][0][2][1] = 5 * front_left_down_y, data[2][0][0][2][2] = front_left_down_z;
 
-	data[2][0][1][0][0] = front_left_down_x, data[2][0][1][0][1] = front_left_down_y, data[2][0][1][0][2] = front_left_down_z;
-	data[2][0][1][1][0] = front_left_top_x, data[2][0][1][1][1] = front_left_top_y, data[2][0][1][1][2] = front_left_top_z;
-	data[2][0][1][2][0] = back_left_top_x, data[2][0][1][2][1] = back_left_top_y, data[2][0][1][2][2] = back_left_top_z;
+	data[2][0][1][0][0] = front_left_down_x, data[2][0][1][0][1] = 5 * front_left_down_y, data[2][0][1][0][2] = front_left_down_z;
+	data[2][0][1][1][0] = front_left_top_x, data[2][0][1][1][1] = 5 * front_left_top_y, data[2][0][1][1][2] = front_left_top_z;
+	data[2][0][1][2][0] = back_left_top_x, data[2][0][1][2][1] = 5 * back_left_top_y, data[2][0][1][2][2] = back_left_top_z;
 
 	// 좌측 노멀
 	data[2][1][0][0][0] = -1.0f, data[2][1][0][0][1] = 0.0f, data[2][1][0][0][2] = 0.0f;
@@ -83,13 +83,13 @@ Light::Light()
 	data[2][1][1][2][0] = -1.0f, data[2][1][1][2][1] = 0.0f, data[2][1][1][2][2] = 0.0f;
 
 	// 후면 좌표
-	data[3][0][0][0][0] = back_left_top_x, data[3][0][0][0][1] = back_left_top_y, data[3][0][0][0][2] = back_left_top_z;
-	data[3][0][0][1][0] = back_left_down_x, data[3][0][0][1][1] = back_left_down_y, data[3][0][0][1][2] = back_left_down_z;
-	data[3][0][0][2][0] = back_right_top_x, data[3][0][0][2][1] = back_right_top_y, data[3][0][0][2][2] = back_right_top_z;
+	data[3][0][0][0][0] = back_left_top_x, data[3][0][0][0][1] = 5 * back_left_top_y, data[3][0][0][0][2] = back_left_top_z;
+	data[3][0][0][1][0] = back_left_down_x, data[3][0][0][1][1] = 5 * back_left_down_y, data[3][0][0][1][2] = back_left_down_z;
+	data[3][0][0][2][0] = back_right_top_x, data[3][0][0][2][1] = 5 * back_right_top_y, data[3][0][0][2][2] = back_right_top_z;
 
-	data[3][0][1][0][0] = back_right_top_x, data[3][0][1][0][1] = back_right_top_y, data[3][0][1][0][2] = back_right_top_z;
-	data[3][0][1][1][0] = back_left_down_x, data[3][0][1][1][1] = back_left_down_y, data[3][0][1][1][2] = back_left_down_z;
-	data[3][0][1][2][0] = back_right_down_x, data[3][0][1][2][1] = back_right_down_y, data[3][0][1][2][2] = back_right_down_z;
+	data[3][0][1][0][0] = back_right_top_x, data[3][0][1][0][1] = 5 * back_right_top_y, data[3][0][1][0][2] = back_right_top_z;
+	data[3][0][1][1][0] = back_left_down_x, data[3][0][1][1][1] = 5 * back_left_down_y, data[3][0][1][1][2] = back_left_down_z;
+	data[3][0][1][2][0] = back_right_down_x, data[3][0][1][2][1] = 5 * back_right_down_y, data[3][0][1][2][2] = back_right_down_z;
 
 	// 후면 노멀
 	data[3][1][0][0][0] = 0.0f, data[3][1][0][0][1] = 0.0f, data[3][1][0][0][2] = -1.0f;
@@ -101,13 +101,13 @@ Light::Light()
 	data[3][1][1][2][0] = 0.0f, data[3][1][1][2][1] = 0.0f, data[3][1][1][2][2] = -1.0f;
 
 	// 하단 좌표
-	data[4][0][0][0][0] = back_right_down_x, data[4][0][0][0][1] = back_right_down_y, data[4][0][0][0][2] = back_right_down_z;
-	data[4][0][0][1][0] = front_right_down_x, data[4][0][0][1][1] = front_right_down_y, data[4][0][0][1][2] = front_right_down_z;
-	data[4][0][0][2][0] = front_left_down_x, data[4][0][0][2][1] = front_left_down_y, data[4][0][0][2][2] = front_left_down_z;
+	data[4][0][0][0][0] = back_right_down_x, data[4][0][0][0][1] = 5 * back_right_down_y, data[4][0][0][0][2] = back_right_down_z;
+	data[4][0][0][1][0] = front_right_down_x, data[4][0][0][1][1] = 5 * front_right_down_y, data[4][0][0][1][2] = front_right_down_z;
+	data[4][0][0][2][0] = front_left_down_x, data[4][0][0][2][1] = 5 * front_left_down_y, data[4][0][0][2][2] = front_left_down_z;
 
-	data[4][0][1][0][0] = front_left_down_x, data[4][0][1][0][1] = front_left_down_y, data[4][0][1][0][2] = front_left_down_z;
-	data[4][0][1][1][0] = back_left_down_x, data[4][0][1][1][1] = back_left_down_y, data[4][0][1][1][2] = back_left_down_z;
-	data[4][0][1][2][0] = back_right_down_x, data[4][0][1][2][1] = back_right_down_y, data[4][0][1][2][2] = back_right_down_z;
+	data[4][0][1][0][0] = front_left_down_x, data[4][0][1][0][1] = 5 * front_left_down_y, data[4][0][1][0][2] = front_left_down_z;
+	data[4][0][1][1][0] = back_left_down_x, data[4][0][1][1][1] = 5 * back_left_down_y, data[4][0][1][1][2] = back_left_down_z;
+	data[4][0][1][2][0] = back_right_down_x, data[4][0][1][2][1] = 5 * back_right_down_y, data[4][0][1][2][2] = back_right_down_z;
 
 	// 하단 노멀
 	data[4][1][0][0][0] = 0.0f, data[4][1][0][0][1] = -1.0f, data[4][1][0][0][2] = 0.0f;
@@ -119,13 +119,13 @@ Light::Light()
 	data[4][1][1][2][0] = 0.0f, data[4][1][1][2][1] = -1.0f, data[4][1][1][2][2] = 0.0f;
 
 	// 우측 좌표
-	data[5][0][0][0][0] = back_right_down_x, data[5][0][0][0][1] = back_right_down_y, data[5][0][0][0][2] = back_right_down_z;
-	data[5][0][0][1][0] = back_right_top_x, data[5][0][0][1][1] = back_right_top_y, data[5][0][0][1][2] = back_right_top_z;
-	data[5][0][0][2][0] = front_right_down_x, data[5][0][0][2][1] = front_right_down_y, data[5][0][0][2][2] = front_right_down_z;
+	data[5][0][0][0][0] = back_right_down_x, data[5][0][0][0][1] = 5 * back_right_down_y, data[5][0][0][0][2] = back_right_down_z;
+	data[5][0][0][1][0] = back_right_top_x, data[5][0][0][1][1] = 5 * back_right_top_y, data[5][0][0][1][2] = back_right_top_z;
+	data[5][0][0][2][0] = front_right_down_x, data[5][0][0][2][1] = 5 * front_right_down_y, data[5][0][0][2][2] = front_right_down_z;
 
-	data[5][0][1][0][0] = front_right_down_x, data[5][0][1][0][1] = front_right_down_y, data[5][0][1][0][2] = front_right_down_z;
-	data[5][0][1][1][0] = back_right_top_x, data[5][0][1][1][1] = back_right_top_y, data[5][0][1][1][2] = back_right_top_z;
-	data[5][0][1][2][0] = front_right_top_x, data[5][0][1][2][1] = front_right_top_y, data[5][0][1][2][2] = front_right_top_z;
+	data[5][0][1][0][0] = front_right_down_x, data[5][0][1][0][1] = 5 * front_right_down_y, data[5][0][1][0][2] = front_right_down_z;
+	data[5][0][1][1][0] = back_right_top_x, data[5][0][1][1][1] = 5 * back_right_top_y, data[5][0][1][1][2] = back_right_top_z;
+	data[5][0][1][2][0] = front_right_top_x, data[5][0][1][2][1] = 5 * front_right_top_y, data[5][0][1][2][2] = front_right_top_z;
 
 	// 우측 노멀
 	data[5][1][0][0][0] = 1.0f, data[5][1][0][0][1] = 0.0f, data[5][1][0][0][2] = 0.0f;
@@ -137,7 +137,7 @@ Light::Light()
 	data[5][1][1][2][0] = 1.0f, data[5][1][1][2][1] = 0.0f, data[5][1][1][2][2] = 0.0f;
 }
 
-void Light::initBuffer(GLuint s_program)
+void Hexahedron::initBuffer(GLuint s_program)
 {
 	glGenVertexArrays(6, vao);
 	for (int i = 0; i < 6; i++) {
@@ -162,46 +162,42 @@ void Light::initBuffer(GLuint s_program)
 	objColorLocation = glGetUniformLocation(s_program, "objectColor"); //--- object Color값 전달
 }
 
-void Light::draw()
+void Hexahedron::draw()
 {
-	glUniform4f(objColorLocation, raypower, raypower, raypower, 1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glUniform4f(objColorLocation, 0.1f, 0.1f, 1.0f, 0.5f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
+	glDisable(GL_BLEND);
 }
 
-void Light::allReset()
+void Hexahedron::allReset()
 {
-	rotate = false;
-	rotatePos = 90.0f;
-	zPos = 2.5f;
-	raypower = 3.0f;
-	colorType = 1;
-	lightOn = true;
+	std::random_device rd;
+	std::default_random_engine dre(rd());
+	std::uniform_real_distribution<float> coordinate(-1.8f, 1.8f);
+
+	do {
+		xPos = (float)coordinate(dre);
+		zPos = (float)coordinate(dre);
+	} while (xPos > -1.2f && xPos < 1.2f && zPos > -1.2f && zPos < 1.2f);
 }
 
-void Light::update()
+void Hexahedron::update()
 {
-	if (rotate) {
-		rotatePos += 1.0f;
-	}
-	if (lightOn) {
-		glUniform3f(lightColorLocation, raypower, raypower, raypower);
-	}
-	else {
-		glUniform3f(lightColorLocation, 0.0f, 0.0f, 0.0f);
-	}
-	glUniform3f(lightPosLocation, (zPos - 0.2f) * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.5f, (zPos - 0.2f) * sin(2 * 3.14159265358979 / 360 * rotatePos));
+
 }
 
-void Light::putFactor(glm::mat4 inputFactor)
+void Hexahedron::putFactor(glm::mat4 inputFactor)
 {
 	myFactor = inputFactor;
-	myFactor = glm::translate(myFactor, glm::vec3(zPos * cos(2 * 3.14159265358979 / 360 * rotatePos), 0.5f, zPos * sin(2 * 3.14159265358979 / 360 * rotatePos)));
+	myFactor = glm::translate(myFactor, glm::vec3(xPos, 1.0f, zPos));
 }
 
-glm::mat4 Light::getFactor()
+glm::mat4 Hexahedron::getFactor()
 {
 	return myFactor;
 }

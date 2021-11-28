@@ -34,7 +34,7 @@ void Moon::initBuffer(int s_program, GLint object)
 
 void Moon::draw()
 {
-	glUniform3f(objColorLocation, 1.0f, 1.0f, 0.1f);
+	glUniform4f(objColorLocation, 1.0f, 1.0f, 0.1f, 1.0f);
 	glBindVertexArray(vao[0]);
 	glDrawArrays(GL_TRIANGLES, 0, object);
 }

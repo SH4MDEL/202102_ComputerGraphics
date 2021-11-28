@@ -13,6 +13,7 @@
 #include "Moon.h"
 #include "Snowflake.h"
 #include "Sierpinski.h"
+#include "Hexahedron.h"
 
 #define M_PI 3.1415926535897932384626433832795
 #define M_WINDOWX 700
@@ -66,6 +67,7 @@ struct ObjectManager {
 	Earth earth;
 	Moon moon;
 	Snowflake snow[100];
+	Hexahedron hexa[5];
 
 	Sierpinski* sier = new Sierpinski(0);
 	//Sierpinski sier = { 6 };
@@ -80,6 +82,9 @@ struct ObjectManager {
 		sierBuffer(s_program);
 		for (int i = 0; i < 100; i++) {
 			snow[i].initBuffer(s_program, object);
+		}
+		for (int i = 0; i < 5; i++) {
+			hexa[i].initBuffer(s_program);
 		}
 	}
 
@@ -105,7 +110,7 @@ int main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(M_WINDOWX, M_WINDOWY);
-	glutCreateWindow("practice 27");
+	glutCreateWindow("practice 29");
 
 	//--- GLEW 초기화하기
 	glewExperimental = GL_TRUE;
@@ -195,6 +200,11 @@ GLvoid drawScene()
 			om.snow[i].draw();
 		}
 	}
+	for (int i = 0; i < 5; i++) {
+		om.hexa[i].putFactor(om.field.getFactor());
+		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(om.hexa[i].getFactor()));
+		om.hexa[i].draw();
+	}
 
 	glDisable(GL_DEPTH_TEST);
 	glutPostRedisplay();
@@ -283,8 +293,8 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 	case 'X':
 		rc.x -= 0.1f;
 		break;
-	case 'y':	// 카메라 기준 y축에 대해서 회전
-	case 'Y':
+	case 'a':	// 카메라 기준 y축에 대해서 회전
+	case 'A':
 		if (rc.revolve) {
 			rc.revolve = false;
 		}
@@ -292,8 +302,8 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 			rc.revolve = true;
 		}
 		break;
-	case 'a':	// r 명령어와 같이 화면의 중심의 축에 대하여 카메라가 회전하는 애니메이션을 진행한다/멈춘다
-	case 'A':
+	case 'y':	// r 명령어와 같이 화면의 중심의 축에 대하여 카메라가 회전하는 애니메이션을 진행한다/멈춘다
+	case 'Y':
 		if (rc.rotation) {
 			rc.rotation = false;
 		}
@@ -308,6 +318,15 @@ GLvoid Keyboard(unsigned char inputKey, int x, int y)
 		}
 		else {
 			rc.snowing = true;
+		}
+		break;
+	case 'm':
+	case 'M':
+		if (om.light.lightOn) {
+			om.light.lightOn = false;
+		}
+		else {
+			om.light.lightOn = true;
 		}
 		break;
 	case 'q':	// 프로그램 종료
@@ -336,6 +355,9 @@ GLvoid TimerFunction(int value)
 		for (int i = 0; i < 50; i++) {
 			om.snow[i].update();
 		}
+	}
+	for (int i = 0; i < 5; i++) {
+		om.hexa[i].update();
 	}
 	glutPostRedisplay();
 	glutTimerFunc(10, TimerFunction, value);

@@ -184,7 +184,7 @@ void Sierpinski::initBuffer(GLuint s_program)
 
 void Sierpinski::draw()
 {
-	glUniform3f(objColorLocation, 1.0f, 1.0f, 1.0f);
+	glUniform4f(objColorLocation, 0.8f, 0.8f, 0.8f, 0.8f);
 	for (int i = 0; i < 2; i++) {
 		glBindVertexArray(bvao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 3);

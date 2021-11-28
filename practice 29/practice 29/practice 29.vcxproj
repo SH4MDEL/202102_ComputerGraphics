@@ -144,6 +144,7 @@
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="filetobuf.cpp" />
+    <ClCompile Include="Hexahedron.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="make_fragmentShaders.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Earth.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="filetobuf.h" />
+    <ClInclude Include="Hexahedron.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="make_fragmentShaders.h" />
     <ClInclude Include="make_shaderProgram.h" />

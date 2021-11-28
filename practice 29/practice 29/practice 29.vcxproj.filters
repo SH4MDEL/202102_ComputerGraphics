@@ -66,6 +66,9 @@
     <ClCompile Include="Sierpinski.cpp">
       <Filter>소스 파일\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Hexahedron.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Moon.h">
@@ -105,6 +108,9 @@
       <Filter>헤더 파일\Object</Filter>
     </ClInclude>
     <ClInclude Include="filetobuf.h">
+      <Filter>헤더 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Hexahedron.h">
       <Filter>헤더 파일\Object</Filter>
     </ClInclude>
   </ItemGroup>
