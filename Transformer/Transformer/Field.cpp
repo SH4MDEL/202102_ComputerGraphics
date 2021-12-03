@@ -21,6 +21,8 @@ Field::Field()
 
 void Field::initBuffer(GLuint s_program)
 {
+	this->s_program = s_program;
+
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glGenBuffers(2, vbo);
@@ -37,7 +39,7 @@ void Field::initBuffer(GLuint s_program)
 
 void Field::draw()
 {
-	glUniform4f(objColorLocation, 0.84f, 0.72f, 0.56f, 1.0f);
+	glUniform4f(objColorLocation, 0.84f, 0.84f, 0.84f, 1.0f);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

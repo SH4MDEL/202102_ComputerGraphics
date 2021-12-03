@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
-struct Obstacle
+struct Item
 {
 	GLfloat data[6][2][2][3][3];		// 크기와 색상 정보가 입력됩니다.
 	GLuint vao[6], vbo[6][2];			// 한 면의 크기와 색상 정보가 vao에 바인딩됩니다.
@@ -14,10 +14,10 @@ struct Obstacle
 	// 기타 필요한 변수들 생성
 	GLfloat xPos, zPos;
 	GLfloat HeightFromGround;
-
+	GLfloat rotatePos;
 	////////////////////////////////////////////////////////////////////////
 
-	Obstacle();						// 생성자
+	Item();						// 생성자
 	void initBuffer(GLint s_program);					// 크기와 색상 정보를 vao 및 vbo에 바인딩합니다. 메인 함수에서 호출해줘야합니다.
 	void draw();						// 원점에 그립니다.
 

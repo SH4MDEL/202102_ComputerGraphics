@@ -1,6 +1,6 @@
-#include "Obstacle.h"
+#include "Item.h"
 
-Obstacle::Obstacle()
+Item::Item()
 {
 	allReset();
 
@@ -14,14 +14,14 @@ Obstacle::Obstacle()
 	//GLfloat back_right_down_x = linear, back_right_down_y = -linear, back_right_down_z = -linear;
 	//GLfloat back_right_top_x = linear, back_right_top_y = linear, back_right_top_z = -linear;
 
-	GLfloat front_left_down_x = -0.2f, front_left_down_y = -0.1f, front_left_down_z = 0.1f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	GLfloat front_left_top_x = -0.2f, front_left_top_y = 0.1f, front_left_top_z = 0.1f;
-	GLfloat front_right_down_x = 0.2f, front_right_down_y = -0.1f, front_right_down_z = 0.1f;
-	GLfloat front_right_top_x = 0.2f, front_right_top_y = 0.1f, front_right_top_z = 0.1f;
-	GLfloat back_left_down_x = -0.2f, back_left_down_y = -0.1f, back_left_down_z = -0.1f;
-	GLfloat back_left_top_x = -0.2f, back_left_top_y = 0.1f, back_left_top_z = -0.1f;
-	GLfloat back_right_down_x = 0.2f, back_right_down_y = -0.1f, back_right_down_z = -0.1f;
-	GLfloat back_right_top_x = 0.2f, back_right_top_y = 0.1f, back_right_top_z = -0.1f;
+	GLfloat front_left_down_x = -0.2f, front_left_down_y = -0.2f, front_left_down_z = 0.2f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	GLfloat front_left_top_x = -0.2f, front_left_top_y = 0.2f, front_left_top_z = 0.2f;
+	GLfloat front_right_down_x = 0.2f, front_right_down_y = -0.2f, front_right_down_z = 0.2f;
+	GLfloat front_right_top_x = 0.2f, front_right_top_y = 0.2f, front_right_top_z = 0.2f;
+	GLfloat back_left_down_x = -0.2f, back_left_down_y = -0.2f, back_left_down_z = -0.2f;
+	GLfloat back_left_top_x = -0.2f, back_left_top_y = 0.2f, back_left_top_z = -0.2f;
+	GLfloat back_right_down_x = 0.2f, back_right_down_y = -0.2f, back_right_down_z = -0.2f;
+	GLfloat back_right_top_x = 0.2f, back_right_top_y = 0.2f, back_right_top_z = -0.2f;
 
 	// 전면 좌표
 	data[0][0][0][0][0] = front_left_down_x, data[0][0][0][0][1] = front_left_down_y, data[0][0][0][0][2] = front_left_down_z;
@@ -36,7 +36,7 @@ Obstacle::Obstacle()
 	data[0][1][0][0][0] = 0.0f, data[0][1][0][0][1] = 0.0f, data[0][1][0][0][2] = 1.0f;
 	data[0][1][0][1][0] = 0.0f, data[0][1][0][1][1] = 0.0f, data[0][1][0][1][2] = 1.0f;
 	data[0][1][0][2][0] = 0.0f, data[0][1][0][2][1] = 0.0f, data[0][1][0][2][2] = 1.0f;
-																				  
+
 	data[0][1][1][0][0] = 0.0f, data[0][1][1][0][1] = 0.0f, data[0][1][1][0][2] = 1.0f;
 	data[0][1][1][1][0] = 0.0f, data[0][1][1][1][1] = 0.0f, data[0][1][1][1][2] = 1.0f;
 	data[0][1][1][2][0] = 0.0f, data[0][1][1][2][1] = 0.0f, data[0][1][1][2][2] = 1.0f;
@@ -133,7 +133,7 @@ Obstacle::Obstacle()
 	data[5][1][1][2][0] = 1.0f, data[5][1][1][2][1] = 0.0f, data[5][1][1][2][2] = 0.0f;
 }
 
-void Obstacle::initBuffer(GLint s_program)
+void Item::initBuffer(GLint s_program)
 {
 	this->s_program = s_program;
 
@@ -153,19 +153,19 @@ void Obstacle::initBuffer(GLint s_program)
 	objColorLocation = glGetUniformLocation(s_program, "objectColor"); //--- object Color값 전달
 }
 
-void Obstacle::draw()
+void Item::draw()
 {
 	for (int i = 0; i < 6; i++) {
-		glUniform4f(objColorLocation, 0.77f, 0.72f, 0.22f, 1.0f);
+		glUniform4f(objColorLocation, 0.80f, 0.64f, 0.85f, 1.0f);
 		glBindVertexArray(vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 }
 
-void Obstacle::allReset()
+void Item::allReset()
 {
 	//xPos = coordinate(dre) / 100.0f, zPos = coordinate(dre) / 100.0f;
-	
+
 	std::random_device rd;
 	std::default_random_engine dre(rd());
 	std::uniform_real_distribution<float> coordinate(-2.9f, 2.9f);
@@ -174,21 +174,25 @@ void Obstacle::allReset()
 		xPos = (float)coordinate(dre);
 		zPos = (float)coordinate(dre);
 	} while (xPos > -0.4f && xPos < 0.4f && zPos > -0.4f && zPos < 0.4f);
-	HeightFromGround = 0.1f;
+	HeightFromGround = 0.3f;
+	rotatePos = 0.0f;
 }
 
-void Obstacle::update()
+void Item::update()
 {
-
+	rotatePos += 1.0f;
 }
 
-void Obstacle::putFactor(glm::mat4 inputFactor)
+void Item::putFactor(glm::mat4 inputFactor)
 {
 	myFactor = inputFactor;
 	myFactor = glm::translate(myFactor, glm::vec3(xPos, HeightFromGround, zPos));	// 기본으로 세팅할 객체의 위치
+	myFactor = glm::rotate(myFactor, glm::radians(rotatePos), glm::vec3(0.0f, 1.0f, 0.0f));
+	myFactor = glm::rotate(myFactor, glm::radians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	myFactor = glm::rotate(myFactor, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 }
 
-glm::mat4 Obstacle::getFactor()
+glm::mat4 Item::getFactor()
 {
 	return myFactor;
 }

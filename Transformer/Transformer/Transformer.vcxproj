@@ -92,6 +92,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>glew32.lib freeglut.lib
+ %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -141,6 +143,8 @@
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="filetobuf.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="make_fragmentShaders.cpp" />
     <ClCompile Include="make_shaderProgram.cpp" />
@@ -151,6 +155,8 @@
   <ItemGroup>
     <ClInclude Include="Field.h" />
     <ClInclude Include="filetobuf.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="make_fragmentShaders.h" />
     <ClInclude Include="make_shaderProgram.h" />
     <ClInclude Include="make_vertexShaders.h" />

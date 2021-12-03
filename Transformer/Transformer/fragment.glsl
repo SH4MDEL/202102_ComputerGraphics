@@ -1,11 +1,35 @@
-#version 330
-// out_Color :	버텍스 세이더에서 입력받는 색상 값
-// FragColor :	출력할 색상의 값으로 프레임 버퍼로 전달 됨.
+#version 330 core
+in vec3 FragPos;
+in vec3 Normal;
 
-in vec3 out_Color;			// 버텍스 세이더에게서 전달 받음
-out vec4 FragColor;			// 색상 출력
+out vec4 FragColor;
 
-void main(void) 
+uniform vec3 lightPos;
+uniform vec3 lightColor;
+uniform vec4 objectColor;
+uniform vec3 viewPos;
+
+
+void main()
 {
-	FragColor = vec4(out_Color, 1.0);
+	//vec3 ambientLight = vec3(0.5f) * lightColor;
+	vec3 ambientLight = vec3(0.5f);
+	vec3 ambient = ambientLight;
+
+	vec3 normalVector = normalize(Normal);
+	vec3 lightDir = normalize(lightPos - FragPos);
+	float diffuseLight = max(dot(normalVector, lightDir), 0.0);
+	vec3 diffuse = diffuseLight * lightColor;
+
+	int shininess = 32;
+	vec3 viewDir = normalize(viewPos - FragPos);
+	vec3 reflectDir = reflect(-lightDir, normalVector);
+	float specularLight = max(dot(viewDir, reflectDir), 0.0);
+	specularLight = pow(specularLight, shininess);
+	vec3 specular = specularLight * lightColor;
+
+	vec4 result = vec4(ambient + diffuse + specular, 1.0);
+
+	FragColor = result * objectColor;
+	//FragColor = texture(outTexture, TexCoord) * FragColor;
 }

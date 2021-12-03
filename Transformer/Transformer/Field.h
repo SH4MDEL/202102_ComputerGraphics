@@ -7,6 +7,7 @@ struct Field
 	GLuint vao, vbo[2];
 	glm::mat4 myFactor;
 
+	GLint s_program;
 	int objColorLocation;
 
 	Field();

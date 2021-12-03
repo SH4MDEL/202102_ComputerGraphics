@@ -6,14 +6,14 @@ Robot::Robot()
 
 	// body
 
-	GLfloat front_left_down_x = -0.02f, front_left_down_y = -0.02f, front_left_down_z = 0.01f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	GLfloat front_left_top_x = -0.02f, front_left_top_y = 0.02f, front_left_top_z = 0.01f;
-	GLfloat front_right_down_x = 0.02f, front_right_down_y = -0.02f, front_right_down_z = 0.01f;
-	GLfloat front_right_top_x = 0.02f, front_right_top_y = 0.02f, front_right_top_z = 0.01f;
-	GLfloat back_left_down_x = -0.02f, back_left_down_y = -0.02f, back_left_down_z = -0.01f;
-	GLfloat back_left_top_x = -0.02f, back_left_top_y = 0.02f, back_left_top_z = -0.01f;
-	GLfloat back_right_down_x = 0.02f, back_right_down_y = -0.02f, back_right_down_z = -0.01f;
-	GLfloat back_right_top_x = 0.02f, back_right_top_y = 0.02f, back_right_top_z = -0.01f;
+	GLfloat front_left_down_x = -0.2f, front_left_down_y = -0.2f, front_left_down_z = 0.1f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	GLfloat front_left_top_x = -0.2f, front_left_top_y = 0.2f, front_left_top_z = 0.1f;
+	GLfloat front_right_down_x = 0.2f, front_right_down_y = -0.2f, front_right_down_z = 0.1f;
+	GLfloat front_right_top_x = 0.2f, front_right_top_y = 0.2f, front_right_top_z = 0.1f;
+	GLfloat back_left_down_x = -0.2f, back_left_down_y = -0.2f, back_left_down_z = -0.1f;
+	GLfloat back_left_top_x = -0.2f, back_left_top_y = 0.2f, back_left_top_z = -0.1f;
+	GLfloat back_right_down_x = 0.2f, back_right_down_y = -0.2f, back_right_down_z = -0.1f;
+	GLfloat back_right_top_x = 0.2f, back_right_top_y = 0.2f, back_right_top_z = -0.1f;
 
 	//printf("%d\n", color(gen));
 
@@ -128,14 +128,14 @@ Robot::Robot()
 
 	// head
 
-	front_left_down_x = -0.01f, front_left_down_y = -0.01f, front_left_down_z = 0.01f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	front_left_top_x = -0.01f, front_left_top_y = 0.01f, front_left_top_z = 0.01f;
-	front_right_down_x = 0.01f, front_right_down_y = -0.01f, front_right_down_z = 0.01f;
-	front_right_top_x = 0.01f, front_right_top_y = 0.01f, front_right_top_z = 0.01f;
-	back_left_down_x = -0.01f, back_left_down_y = -0.01f, back_left_down_z = -0.01f;
-	back_left_top_x = -0.01f, back_left_top_y = 0.01f, back_left_top_z = -0.01f;
-	back_right_down_x = 0.01f, back_right_down_y = -0.01f, back_right_down_z = -0.01f;
-	back_right_top_x = 0.01f, back_right_top_y = 0.01f, back_right_top_z = -0.01f;
+	front_left_down_x = -0.1f, front_left_down_y = -0.1f, front_left_down_z = 0.1f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	front_left_top_x = -0.1f, front_left_top_y = 0.1f, front_left_top_z = 0.1f;
+	front_right_down_x = 0.1f, front_right_down_y = -0.1f, front_right_down_z = 0.1f;
+	front_right_top_x = 0.1f, front_right_top_y = 0.1f, front_right_top_z = 0.1f;
+	back_left_down_x = -0.1f, back_left_down_y = -0.1f, back_left_down_z = -0.1f;
+	back_left_top_x = -0.1f, back_left_top_y = 0.1f, back_left_top_z = -0.1f;
+	back_right_down_x = 0.1f, back_right_down_y = -0.1f, back_right_down_z = -0.1f;
+	back_right_top_x = 0.1f, back_right_top_y = 0.1f, back_right_top_z = -0.1f;
 
 	// 전면 좌표
 	head[0][0][0][0][0] = front_left_down_x, head[0][0][0][0][1] = front_left_down_y, head[0][0][0][0][2] = front_left_down_z;
@@ -267,14 +267,14 @@ Robot::Robot()
 
 	// leftarm
 
-	front_left_down_x = -0.005f, front_left_down_y = -0.02f, front_left_down_z = 0.005f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	front_left_top_x = -0.005f, front_left_top_y = 0.02f, front_left_top_z = 0.005f;
-	front_right_down_x = 0.005f, front_right_down_y = -0.02f, front_right_down_z = 0.005f;
-	front_right_top_x = 0.005f, front_right_top_y = 0.02f, front_right_top_z = 0.005f;
-	back_left_down_x = -0.005f, back_left_down_y = -0.02f, back_left_down_z = -0.005f;
-	back_left_top_x = -0.005f, back_left_top_y = 0.02f, back_left_top_z = -0.005f;
-	back_right_down_x = 0.005f, back_right_down_y = -0.02f, back_right_down_z = -0.005f;
-	back_right_top_x = 0.005f, back_right_top_y = 0.02f, back_right_top_z = -0.005f;
+	front_left_down_x = -0.05f, front_left_down_y = -0.2f, front_left_down_z = 0.05f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	front_left_top_x = -0.05f, front_left_top_y = 0.2f, front_left_top_z = 0.05f;
+	front_right_down_x = 0.05f, front_right_down_y = -0.2f, front_right_down_z = 0.05f;
+	front_right_top_x = 0.05f, front_right_top_y = 0.2f, front_right_top_z = 0.05f;
+	back_left_down_x = -0.05f, back_left_down_y = -0.2f, back_left_down_z = -0.05f;
+	back_left_top_x = -0.05f, back_left_top_y = 0.2f, back_left_top_z = -0.05f;
+	back_right_down_x = 0.05f, back_right_down_y = -0.2f, back_right_down_z = -0.05f;
+	back_right_top_x = 0.05f, back_right_top_y = 0.2f, back_right_top_z = -0.05f;
 
 	// 전면 좌표
 	leftarm[0][0][0][0][0] = front_left_down_x, leftarm[0][0][0][0][1] = front_left_down_y, leftarm[0][0][0][0][2] = front_left_down_z;
@@ -387,14 +387,14 @@ Robot::Robot()
 
 	// leftleg
 
-	front_left_down_x = -0.005f, front_left_down_y = -0.02f, front_left_down_z = 0.005f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	front_left_top_x = -0.005f, front_left_top_y = 0.02f, front_left_top_z = 0.005f;
-	front_right_down_x = 0.005f, front_right_down_y = -0.02f, front_right_down_z = 0.005f;
-	front_right_top_x = 0.005f, front_right_top_y = 0.02f, front_right_top_z = 0.005f;
-	back_left_down_x = -0.005f, back_left_down_y = -0.02f, back_left_down_z = -0.005f;
-	back_left_top_x = -0.005f, back_left_top_y = 0.02f, back_left_top_z = -0.005f;
-	back_right_down_x = 0.005f, back_right_down_y = -0.02f, back_right_down_z = -0.005f;
-	back_right_top_x = 0.005f, back_right_top_y = 0.02f, back_right_top_z = -0.005f;
+	front_left_down_x = -0.05f, front_left_down_y = -0.2f, front_left_down_z = 0.05f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	front_left_top_x = -0.05f, front_left_top_y = 0.2f, front_left_top_z = 0.05f;
+	front_right_down_x = 0.05f, front_right_down_y = -0.2f, front_right_down_z = 0.05f;
+	front_right_top_x = 0.05f, front_right_top_y = 0.2f, front_right_top_z = 0.05f;
+	back_left_down_x = -0.05f, back_left_down_y = -0.2f, back_left_down_z = -0.05f;
+	back_left_top_x = -0.05f, back_left_top_y = 0.2f, back_left_top_z = -0.05f;
+	back_right_down_x = 0.05f, back_right_down_y = -0.2f, back_right_down_z = -0.05f;
+	back_right_top_x = 0.05f, back_right_top_y = 0.2f, back_right_top_z = -0.05f;
 
 	// 전면 좌표
 	leftleg[0][0][0][0][0] = front_left_down_x, leftleg[0][0][0][0][1] = front_left_down_y, leftleg[0][0][0][0][2] = front_left_down_z;
@@ -461,15 +461,14 @@ Robot::Robot()
 	leftleg[3][0][1][2][0] = back_right_down_x, leftleg[3][0][1][2][1] = back_right_down_y, leftleg[3][0][1][2][2] = back_right_down_z;
 
 
-
 	// 후면 색상
-	leftleg[3][1][0][0][0] = 0.0f, leftleg[3][1][0][0][1] = 0.0f, leftleg[3][1][0][0][2] = 0.0f;
-	leftleg[3][1][0][1][0] = 0.0f, leftleg[3][1][0][1][1] = 0.0f, leftleg[3][1][0][1][2] = 0.0f;
-	leftleg[3][1][0][2][0] = 0.0f, leftleg[3][1][0][2][1] = 0.0f, leftleg[3][1][0][2][2] = 0.0f;
-
-	leftleg[3][1][1][0][0] = 0.0f, leftleg[3][1][1][0][1] = 0.0f, leftleg[3][1][1][0][2] = 0.0f;
-	leftleg[3][1][1][1][0] = 0.0f, leftleg[3][1][1][1][1] = 0.0f, leftleg[3][1][1][1][2] = 0.0f;
-	leftleg[3][1][1][2][0] = 0.0f, leftleg[3][1][1][2][1] = 0.0f, leftleg[3][1][1][2][2] = 0.0f;
+	leftleg[3][1][0][0][0] = 0.0f, leftleg[3][1][0][0][1] = 0.0f, leftleg[3][1][0][0][2] = -1.0f;
+	leftleg[3][1][0][1][0] = 0.0f, leftleg[3][1][0][1][1] = 0.0f, leftleg[3][1][0][1][2] = -1.0f;
+	leftleg[3][1][0][2][0] = 0.0f, leftleg[3][1][0][2][1] = 0.0f, leftleg[3][1][0][2][2] = -1.0f;
+																						   
+	leftleg[3][1][1][0][0] = 0.0f, leftleg[3][1][1][0][1] = 0.0f, leftleg[3][1][1][0][2] = -1.0f;
+	leftleg[3][1][1][1][0] = 0.0f, leftleg[3][1][1][1][1] = 0.0f, leftleg[3][1][1][1][2] = -1.0f;
+	leftleg[3][1][1][2][0] = 0.0f, leftleg[3][1][1][2][1] = 0.0f, leftleg[3][1][1][2][2] = -1.0f;
 
 	// 하단 좌표
 	leftleg[4][0][0][0][0] = back_right_down_x, leftleg[4][0][0][0][1] = back_right_down_y, leftleg[4][0][0][0][2] = back_right_down_z;
@@ -481,13 +480,13 @@ Robot::Robot()
 	leftleg[4][0][1][2][0] = back_right_down_x, leftleg[4][0][1][2][1] = back_right_down_y, leftleg[4][0][1][2][2] = back_right_down_z;
 
 	// 하단 색상
-	leftleg[4][1][0][0][0] = 0.0f, leftleg[4][1][0][0][1] = 0.0f, leftleg[4][1][0][0][2] = 0.0f;
-	leftleg[4][1][0][1][0] = 0.0f, leftleg[4][1][0][1][1] = 0.0f, leftleg[4][1][0][1][2] = 0.0f;
-	leftleg[4][1][0][2][0] = 0.0f, leftleg[4][1][0][2][1] = 0.0f, leftleg[4][1][0][2][2] = 0.0f;
-
-	leftleg[4][1][1][0][0] = 0.0f, leftleg[4][1][1][0][1] = 0.0f, leftleg[4][1][1][0][2] = 0.0f;
-	leftleg[4][1][1][1][0] = 0.0f, leftleg[4][1][1][1][1] = 0.0f, leftleg[4][1][1][1][2] = 0.0f;
-	leftleg[4][1][1][2][0] = 0.0f, leftleg[4][1][1][2][1] = 0.0f, leftleg[4][1][1][2][2] = 0.0f;
+	leftleg[4][1][0][0][0] = 0.0f, leftleg[4][1][0][0][1] = -1.0f, leftleg[4][1][0][0][2] = 0.0f;
+	leftleg[4][1][0][1][0] = 0.0f, leftleg[4][1][0][1][1] = -1.0f, leftleg[4][1][0][1][2] = 0.0f;
+	leftleg[4][1][0][2][0] = 0.0f, leftleg[4][1][0][2][1] = -1.0f, leftleg[4][1][0][2][2] = 0.0f;
+															
+	leftleg[4][1][1][0][0] = 0.0f, leftleg[4][1][1][0][1] = -1.0f, leftleg[4][1][1][0][2] = 0.0f;
+	leftleg[4][1][1][1][0] = 0.0f, leftleg[4][1][1][1][1] = -1.0f, leftleg[4][1][1][1][2] = 0.0f;
+	leftleg[4][1][1][2][0] = 0.0f, leftleg[4][1][1][2][1] = -1.0f, leftleg[4][1][1][2][2] = 0.0f;
 
 	// 우측 좌표
 	leftleg[5][0][0][0][0] = back_right_down_x, leftleg[5][0][0][0][1] = back_right_down_y, leftleg[5][0][0][0][2] = back_right_down_z;
@@ -499,24 +498,24 @@ Robot::Robot()
 	leftleg[5][0][1][2][0] = front_right_top_x, leftleg[5][0][1][2][1] = front_right_top_y, leftleg[5][0][1][2][2] = front_right_top_z;
 
 	// 우측 색상
-	leftleg[5][1][0][0][0] = 0.0f, leftleg[5][1][0][0][1] = 0.0f, leftleg[5][1][0][0][2] = 0.0f;
-	leftleg[5][1][0][1][0] = 0.0f, leftleg[5][1][0][1][1] = 0.0f, leftleg[5][1][0][1][2] = 0.0f;
-	leftleg[5][1][0][2][0] = 0.0f, leftleg[5][1][0][2][1] = 0.0f, leftleg[5][1][0][2][2] = 0.0f;
-
-	leftleg[5][1][1][0][0] = 0.0f, leftleg[5][1][1][0][1] = 0.0f, leftleg[5][1][1][0][2] = 0.0f;
-	leftleg[5][1][1][1][0] = 0.0f, leftleg[5][1][1][1][1] = 0.0f, leftleg[5][1][1][1][2] = 0.0f;
-	leftleg[5][1][1][2][0] = 0.0f, leftleg[5][1][1][2][1] = 0.0f, leftleg[5][1][1][2][2] = 0.0f;
+	leftleg[5][1][0][0][0] = 1.0f, leftleg[5][1][0][0][1] = 0.0f, leftleg[5][1][0][0][2] = 0.0f;
+	leftleg[5][1][0][1][0] = 1.0f, leftleg[5][1][0][1][1] = 0.0f, leftleg[5][1][0][1][2] = 0.0f;
+	leftleg[5][1][0][2][0] = 1.0f, leftleg[5][1][0][2][1] = 0.0f, leftleg[5][1][0][2][2] = 0.0f;
+							 
+	leftleg[5][1][1][0][0] = 1.0f, leftleg[5][1][1][0][1] = 0.0f, leftleg[5][1][1][0][2] = 0.0f;
+	leftleg[5][1][1][1][0] = 1.0f, leftleg[5][1][1][1][1] = 0.0f, leftleg[5][1][1][1][2] = 0.0f;
+	leftleg[5][1][1][2][0] = 1.0f, leftleg[5][1][1][2][1] = 0.0f, leftleg[5][1][1][2][2] = 0.0f;
 
 	// rightarm
 
-	front_left_down_x = -0.005f, front_left_down_y = -0.02f, front_left_down_z = 0.005f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	front_left_top_x = -0.005f, front_left_top_y = 0.02f, front_left_top_z = 0.005f;
-	front_right_down_x = 0.005f, front_right_down_y = -0.02f, front_right_down_z = 0.005f;
-	front_right_top_x = 0.005f, front_right_top_y = 0.02f, front_right_top_z = 0.005f;
-	back_left_down_x = -0.005f, back_left_down_y = -0.02f, back_left_down_z = -0.005f;
-	back_left_top_x = -0.005f, back_left_top_y = 0.02f, back_left_top_z = -0.005f;
-	back_right_down_x = 0.005f, back_right_down_y = -0.02f, back_right_down_z = -0.005f;
-	back_right_top_x = 0.005f, back_right_top_y = 0.02f, back_right_top_z = -0.005f;
+	front_left_down_x = -0.05f, front_left_down_y = -0.2f, front_left_down_z = 0.05f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	front_left_top_x = -0.05f, front_left_top_y = 0.2f, front_left_top_z = 0.05f;
+	front_right_down_x = 0.05f, front_right_down_y = -0.2f, front_right_down_z = 0.05f;
+	front_right_top_x = 0.05f, front_right_top_y = 0.2f, front_right_top_z = 0.05f;
+	back_left_down_x = -0.05f, back_left_down_y = -0.2f, back_left_down_z = -0.05f;
+	back_left_top_x = -0.05f, back_left_top_y = 0.2f, back_left_top_z = -0.05f;
+	back_right_down_x = 0.05f, back_right_down_y = -0.2f, back_right_down_z = -0.05f;
+	back_right_top_x = 0.05f, back_right_top_y = 0.2f, back_right_top_z = -0.05f;
 
 	// 전면 좌표
 	rightarm[0][0][0][0][0] = front_left_down_x, rightarm[0][0][0][0][1] = front_left_down_y, rightarm[0][0][0][0][2] = front_left_down_z;
@@ -528,13 +527,13 @@ Robot::Robot()
 	rightarm[0][0][1][2][0] = front_right_top_x, rightarm[0][0][1][2][1] = front_right_top_y, rightarm[0][0][1][2][2] = front_right_top_z;
 
 	// 전면 색상
-	rightarm[0][1][0][0][0] = 0.0f, rightarm[0][1][0][0][1] = 0.0f, rightarm[0][1][0][0][2] = 0.0f;
-	rightarm[0][1][0][1][0] = 0.0f, rightarm[0][1][0][1][1] = 0.0f, rightarm[0][1][0][1][2] = 0.0f;
-	rightarm[0][1][0][2][0] = 0.0f, rightarm[0][1][0][2][1] = 0.0f, rightarm[0][1][0][2][2] = 0.0f;
-
-	rightarm[0][1][1][0][0] = 0.0f, rightarm[0][1][1][0][1] = 0.0f, rightarm[0][1][1][0][2] = 0.0f;
-	rightarm[0][1][1][1][0] = 0.0f, rightarm[0][1][1][1][1] = 0.0f, rightarm[0][1][1][1][2] = 0.0f;
-	rightarm[0][1][1][2][0] = 0.0f, rightarm[0][1][1][2][1] = 0.0f, rightarm[0][1][1][2][2] = 0.0f;
+	rightarm[0][1][0][0][0] = 0.0f, rightarm[0][1][0][0][1] = 0.0f, rightarm[0][1][0][0][2] = 1.0f;
+	rightarm[0][1][0][1][0] = 0.0f, rightarm[0][1][0][1][1] = 0.0f, rightarm[0][1][0][1][2] = 1.0f;
+	rightarm[0][1][0][2][0] = 0.0f, rightarm[0][1][0][2][1] = 0.0f, rightarm[0][1][0][2][2] = 1.0f;
+																							  
+	rightarm[0][1][1][0][0] = 0.0f, rightarm[0][1][1][0][1] = 0.0f, rightarm[0][1][1][0][2] = 1.0f;
+	rightarm[0][1][1][1][0] = 0.0f, rightarm[0][1][1][1][1] = 0.0f, rightarm[0][1][1][1][2] = 1.0f;
+	rightarm[0][1][1][2][0] = 0.0f, rightarm[0][1][1][2][1] = 0.0f, rightarm[0][1][1][2][2] = 1.0f;
 
 
 	// 상단 좌표
@@ -547,13 +546,13 @@ Robot::Robot()
 	rightarm[1][0][1][2][0] = back_left_top_x, rightarm[1][0][1][2][1] = back_left_top_y, rightarm[1][0][1][2][2] = back_left_top_z;
 
 	// 상단 색상
-	rightarm[1][1][0][0][0] = 0.0f, rightarm[1][1][0][0][1] = 0.0f, rightarm[1][1][0][0][2] = 0.0f;
-	rightarm[1][1][0][1][0] = 0.0f, rightarm[1][1][0][1][1] = 0.0f, rightarm[1][1][0][1][2] = 0.0f;
-	rightarm[1][1][0][2][0] = 0.0f, rightarm[1][1][0][2][1] = 0.0f, rightarm[1][1][0][2][2] = 0.0f;
-
-	rightarm[1][1][1][0][0] = 0.0f, rightarm[1][1][1][0][1] = 0.0f, rightarm[1][1][1][0][2] = 0.0f;
-	rightarm[1][1][1][1][0] = 0.0f, rightarm[1][1][1][1][1] = 0.0f, rightarm[1][1][1][1][2] = 0.0f;
-	rightarm[1][1][1][2][0] = 0.0f, rightarm[1][1][1][2][1] = 0.0f, rightarm[1][1][1][2][2] = 0.0f;
+	rightarm[1][1][0][0][0] = 0.0f, rightarm[1][1][0][0][1] = 1.0f, rightarm[1][1][0][0][2] = 0.0f;
+	rightarm[1][1][0][1][0] = 0.0f, rightarm[1][1][0][1][1] = 1.0f, rightarm[1][1][0][1][2] = 0.0f;
+	rightarm[1][1][0][2][0] = 0.0f, rightarm[1][1][0][2][1] = 1.0f, rightarm[1][1][0][2][2] = 0.0f;
+															  
+	rightarm[1][1][1][0][0] = 0.0f, rightarm[1][1][1][0][1] = 1.0f, rightarm[1][1][1][0][2] = 0.0f;
+	rightarm[1][1][1][1][0] = 0.0f, rightarm[1][1][1][1][1] = 1.0f, rightarm[1][1][1][1][2] = 0.0f;
+	rightarm[1][1][1][2][0] = 0.0f, rightarm[1][1][1][2][1] = 1.0f, rightarm[1][1][1][2][2] = 0.0f;
 
 	// 좌측 좌표
 	rightarm[2][0][0][0][0] = back_left_top_x, rightarm[2][0][0][0][1] = back_left_top_y, rightarm[2][0][0][0][2] = back_left_top_z;
@@ -565,13 +564,13 @@ Robot::Robot()
 	rightarm[2][0][1][2][0] = back_left_top_x, rightarm[2][0][1][2][1] = back_left_top_y, rightarm[2][0][1][2][2] = back_left_top_z;
 
 	// 좌측 색상
-	rightarm[2][1][0][0][0] = 0.0f, rightarm[2][1][0][0][1] = 0.0f, rightarm[2][1][0][0][2] = 0.0f;
-	rightarm[2][1][0][1][0] = 0.0f, rightarm[2][1][0][1][1] = 0.0f, rightarm[2][1][0][1][2] = 0.0f;
-	rightarm[2][1][0][2][0] = 0.0f, rightarm[2][1][0][2][1] = 0.0f, rightarm[2][1][0][2][2] = 0.0f;
-
-	rightarm[2][1][1][0][0] = 0.0f, rightarm[2][1][1][0][1] = 0.0f, rightarm[2][1][1][0][2] = 0.0f;
-	rightarm[2][1][1][1][0] = 0.0f, rightarm[2][1][1][1][1] = 0.0f, rightarm[2][1][1][1][2] = 0.0f;
-	rightarm[2][1][1][2][0] = 0.0f, rightarm[2][1][1][2][1] = 0.0f, rightarm[2][1][1][2][2] = 0.0f;
+	rightarm[2][1][0][0][0] = -1.0f, rightarm[2][1][0][0][1] = 0.0f, rightarm[2][1][0][0][2] = 0.0f;
+	rightarm[2][1][0][1][0] = -1.0f, rightarm[2][1][0][1][1] = 0.0f, rightarm[2][1][0][1][2] = 0.0f;
+	rightarm[2][1][0][2][0] = -1.0f, rightarm[2][1][0][2][1] = 0.0f, rightarm[2][1][0][2][2] = 0.0f;
+							  
+	rightarm[2][1][1][0][0] = -1.0f, rightarm[2][1][1][0][1] = 0.0f, rightarm[2][1][1][0][2] = 0.0f;
+	rightarm[2][1][1][1][0] = -1.0f, rightarm[2][1][1][1][1] = 0.0f, rightarm[2][1][1][1][2] = 0.0f;
+	rightarm[2][1][1][2][0] = -1.0f, rightarm[2][1][1][2][1] = 0.0f, rightarm[2][1][1][2][2] = 0.0f;
 
 	// 후면 좌표
 	rightarm[3][0][0][0][0] = back_left_top_x, rightarm[3][0][0][0][1] = back_left_top_y, rightarm[3][0][0][0][2] = back_left_top_z;
@@ -583,13 +582,13 @@ Robot::Robot()
 	rightarm[3][0][1][2][0] = back_right_down_x, rightarm[3][0][1][2][1] = back_right_down_y, rightarm[3][0][1][2][2] = back_right_down_z;
 
 	// 후면 색상
-	rightarm[3][1][0][0][0] = 0.0f, rightarm[3][1][0][0][1] = 0.0f, rightarm[3][1][0][0][2] = 0.0f;
-	rightarm[3][1][0][1][0] = 0.0f, rightarm[3][1][0][1][1] = 0.0f, rightarm[3][1][0][1][2] = 0.0f;
-	rightarm[3][1][0][2][0] = 0.0f, rightarm[3][1][0][2][1] = 0.0f, rightarm[3][1][0][2][2] = 0.0f;
-
-	rightarm[3][1][1][0][0] = 0.0f, rightarm[3][1][1][0][1] = 0.0f, rightarm[3][1][1][0][2] = 0.0f;
-	rightarm[3][1][1][1][0] = 0.0f, rightarm[3][1][1][1][1] = 0.0f, rightarm[3][1][1][1][2] = 0.0f;
-	rightarm[3][1][1][2][0] = 0.0f, rightarm[3][1][1][2][1] = 0.0f, rightarm[3][1][1][2][2] = 0.0f;
+	rightarm[3][1][0][0][0] = 0.0f, rightarm[3][1][0][0][1] = 0.0f, rightarm[3][1][0][0][2] = -1.0f;
+	rightarm[3][1][0][1][0] = 0.0f, rightarm[3][1][0][1][1] = 0.0f, rightarm[3][1][0][1][2] = -1.0f;
+	rightarm[3][1][0][2][0] = 0.0f, rightarm[3][1][0][2][1] = 0.0f, rightarm[3][1][0][2][2] = -1.0f;
+																							  
+	rightarm[3][1][1][0][0] = 0.0f, rightarm[3][1][1][0][1] = 0.0f, rightarm[3][1][1][0][2] = -1.0f;
+	rightarm[3][1][1][1][0] = 0.0f, rightarm[3][1][1][1][1] = 0.0f, rightarm[3][1][1][1][2] = -1.0f;
+	rightarm[3][1][1][2][0] = 0.0f, rightarm[3][1][1][2][1] = 0.0f, rightarm[3][1][1][2][2] = -1.0f;
 
 	// 하단 좌표
 	rightarm[4][0][0][0][0] = back_right_down_x, rightarm[4][0][0][0][1] = back_right_down_y, rightarm[4][0][0][0][2] = back_right_down_z;
@@ -601,13 +600,13 @@ Robot::Robot()
 	rightarm[4][0][1][2][0] = back_right_down_x, rightarm[4][0][1][2][1] = back_right_down_y, rightarm[4][0][1][2][2] = back_right_down_z;
 
 	// 하단 색상
-	rightarm[4][1][0][0][0] = 0.0f, rightarm[4][1][0][0][1] = 0.0f, rightarm[4][1][0][0][2] = 0.0f;
-	rightarm[4][1][0][1][0] = 0.0f, rightarm[4][1][0][1][1] = 0.0f, rightarm[4][1][0][1][2] = 0.0f;
-	rightarm[4][1][0][2][0] = 0.0f, rightarm[4][1][0][2][1] = 0.0f, rightarm[4][1][0][2][2] = 0.0f;
-
-	rightarm[4][1][1][0][0] = 0.0f, rightarm[4][1][1][0][1] = 0.0f, rightarm[4][1][1][0][2] = 0.0f;
-	rightarm[4][1][1][1][0] = 0.0f, rightarm[4][1][1][1][1] = 0.0f, rightarm[4][1][1][1][2] = 0.0f;
-	rightarm[4][1][1][2][0] = 0.0f, rightarm[4][1][1][2][1] = 0.0f, rightarm[4][1][1][2][2] = 0.0f;
+	rightarm[4][1][0][0][0] = 0.0f, rightarm[4][1][0][0][1] = -1.0f, rightarm[4][1][0][0][2] = 0.0f;
+	rightarm[4][1][0][1][0] = 0.0f, rightarm[4][1][0][1][1] = -1.0f, rightarm[4][1][0][1][2] = 0.0f;
+	rightarm[4][1][0][2][0] = 0.0f, rightarm[4][1][0][2][1] = -1.0f, rightarm[4][1][0][2][2] = 0.0f;
+															  
+	rightarm[4][1][1][0][0] = 0.0f, rightarm[4][1][1][0][1] = -1.0f, rightarm[4][1][1][0][2] = 0.0f;
+	rightarm[4][1][1][1][0] = 0.0f, rightarm[4][1][1][1][1] = -1.0f, rightarm[4][1][1][1][2] = 0.0f;
+	rightarm[4][1][1][2][0] = 0.0f, rightarm[4][1][1][2][1] = -1.0f, rightarm[4][1][1][2][2] = 0.0f;
 
 	// 우측 좌표
 	rightarm[5][0][0][0][0] = back_right_down_x, rightarm[5][0][0][0][1] = back_right_down_y, rightarm[5][0][0][0][2] = back_right_down_z;
@@ -619,24 +618,24 @@ Robot::Robot()
 	rightarm[5][0][1][2][0] = front_right_top_x, rightarm[5][0][1][2][1] = front_right_top_y, rightarm[5][0][1][2][2] = front_right_top_z;
 
 	// 우측 색상
-	rightarm[5][1][0][0][0] = 0.0f, rightarm[5][1][0][0][1] = 0.0f, rightarm[5][1][0][0][2] = 0.0f;
-	rightarm[5][1][0][1][0] = 0.0f, rightarm[5][1][0][1][1] = 0.0f, rightarm[5][1][0][1][2] = 0.0f;
-	rightarm[5][1][0][2][0] = 0.0f, rightarm[5][1][0][2][1] = 0.0f, rightarm[5][1][0][2][2] = 0.0f;
-
-	rightarm[5][1][1][0][0] = 0.0f, rightarm[5][1][1][0][1] = 0.0f, rightarm[5][1][1][0][2] = 0.0f;
-	rightarm[5][1][1][1][0] = 0.0f, rightarm[5][1][1][1][1] = 0.0f, rightarm[5][1][1][1][2] = 0.0f;
-	rightarm[5][1][1][2][0] = 0.0f, rightarm[5][1][1][2][1] = 0.0f, rightarm[5][1][1][2][2] = 0.0f;
+	rightarm[5][1][0][0][0] = 1.0f, rightarm[5][1][0][0][1] = 0.0f, rightarm[5][1][0][0][2] = 0.0f;
+	rightarm[5][1][0][1][0] = 1.0f, rightarm[5][1][0][1][1] = 0.0f, rightarm[5][1][0][1][2] = 0.0f;
+	rightarm[5][1][0][2][0] = 1.0f, rightarm[5][1][0][2][1] = 0.0f, rightarm[5][1][0][2][2] = 0.0f;
+							  
+	rightarm[5][1][1][0][0] = 1.0f, rightarm[5][1][1][0][1] = 0.0f, rightarm[5][1][1][0][2] = 0.0f;
+	rightarm[5][1][1][1][0] = 1.0f, rightarm[5][1][1][1][1] = 0.0f, rightarm[5][1][1][1][2] = 0.0f;
+	rightarm[5][1][1][2][0] = 1.0f, rightarm[5][1][1][2][1] = 0.0f, rightarm[5][1][1][2][2] = 0.0f;
 
 	//rightleg
 
-	front_left_down_x = -0.005f, front_left_down_y = -0.02f, front_left_down_z = 0.005f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
-	front_left_top_x = -0.005f, front_left_top_y = 0.02f, front_left_top_z = 0.005f;
-	front_right_down_x = 0.005f, front_right_down_y = -0.02f, front_right_down_z = 0.005f;
-	front_right_top_x = 0.005f, front_right_top_y = 0.02f, front_right_top_z = 0.005f;
-	back_left_down_x = -0.005f, back_left_down_y = -0.02f, back_left_down_z = -0.005f;
-	back_left_top_x = -0.005f, back_left_top_y = 0.02f, back_left_top_z = -0.005f;
-	back_right_down_x = 0.005f, back_right_down_y = -0.02f, back_right_down_z = -0.005f;
-	back_right_top_x = 0.005f, back_right_top_y = 0.02f, back_right_top_z = -0.005f;
+	front_left_down_x = -0.05f, front_left_down_y = -0.2f, front_left_down_z = 0.05f;		// 직육면체를 만들고 싶을 때 적절히 수정해줍니다.
+	front_left_top_x = -0.05f, front_left_top_y = 0.2f, front_left_top_z = 0.05f;
+	front_right_down_x = 0.05f, front_right_down_y = -0.2f, front_right_down_z = 0.05f;
+	front_right_top_x = 0.05f, front_right_top_y = 0.2f, front_right_top_z = 0.05f;
+	back_left_down_x = -0.05f, back_left_down_y = -0.2f, back_left_down_z = -0.05f;
+	back_left_top_x = -0.05f, back_left_top_y = 0.2f, back_left_top_z = -0.05f;
+	back_right_down_x = 0.05f, back_right_down_y = -0.2f, back_right_down_z = -0.05f;
+	back_right_top_x = 0.05f, back_right_top_y = 0.2f, back_right_top_z = -0.05f;
 
 	// 전면 좌표
 	rightleg[0][0][0][0][0] = front_left_down_x, rightleg[0][0][0][0][1] = front_left_down_y, rightleg[0][0][0][0][2] = front_left_down_z;
@@ -648,13 +647,13 @@ Robot::Robot()
 	rightleg[0][0][1][2][0] = front_right_top_x, rightleg[0][0][1][2][1] = front_right_top_y, rightleg[0][0][1][2][2] = front_right_top_z;
 
 	// 전면 색상
-	rightleg[0][1][0][0][0] = 0.0f, rightleg[0][1][0][0][1] = 0.0f, rightleg[0][1][0][0][2] = 0.0f;
-	rightleg[0][1][0][1][0] = 0.0f, rightleg[0][1][0][1][1] = 0.0f, rightleg[0][1][0][1][2] = 0.0f;
-	rightleg[0][1][0][2][0] = 0.0f, rightleg[0][1][0][2][1] = 0.0f, rightleg[0][1][0][2][2] = 0.0f;
-
-	rightleg[0][1][1][0][0] = 0.0f, rightleg[0][1][1][0][1] = 0.0f, rightleg[0][1][1][0][2] = 0.0f;
-	rightleg[0][1][1][1][0] = 0.0f, rightleg[0][1][1][1][1] = 0.0f, rightleg[0][1][1][1][2] = 0.0f;
-	rightleg[0][1][1][2][0] = 0.0f, rightleg[0][1][1][2][1] = 0.0f, rightleg[0][1][1][2][2] = 0.0f;
+	rightleg[0][1][0][0][0] = 0.0f, rightleg[0][1][0][0][1] = 0.0f, rightleg[0][1][0][0][2] = 1.0f;
+	rightleg[0][1][0][1][0] = 0.0f, rightleg[0][1][0][1][1] = 0.0f, rightleg[0][1][0][1][2] = 1.0f;
+	rightleg[0][1][0][2][0] = 0.0f, rightleg[0][1][0][2][1] = 0.0f, rightleg[0][1][0][2][2] = 1.0f;
+																							  
+	rightleg[0][1][1][0][0] = 0.0f, rightleg[0][1][1][0][1] = 0.0f, rightleg[0][1][1][0][2] = 1.0f;
+	rightleg[0][1][1][1][0] = 0.0f, rightleg[0][1][1][1][1] = 0.0f, rightleg[0][1][1][1][2] = 1.0f;
+	rightleg[0][1][1][2][0] = 0.0f, rightleg[0][1][1][2][1] = 0.0f, rightleg[0][1][1][2][2] = 1.0f;
 
 
 	// 상단 좌표
@@ -667,13 +666,13 @@ Robot::Robot()
 	rightleg[1][0][1][2][0] = back_left_top_x, rightleg[1][0][1][2][1] = back_left_top_y, rightleg[1][0][1][2][2] = back_left_top_z;
 
 	// 상단 색상
-	rightleg[1][1][0][0][0] = 0.0f, rightleg[1][1][0][0][1] = 0.0f, rightleg[1][1][0][0][2] = 0.0f;
-	rightleg[1][1][0][1][0] = 0.0f, rightleg[1][1][0][1][1] = 0.0f, rightleg[1][1][0][1][2] = 0.0f;
-	rightleg[1][1][0][2][0] = 0.0f, rightleg[1][1][0][2][1] = 0.0f, rightleg[1][1][0][2][2] = 0.0f;
-
-	rightleg[1][1][1][0][0] = 0.0f, rightleg[1][1][1][0][1] = 0.0f, rightleg[1][1][1][0][2] = 0.0f;
-	rightleg[1][1][1][1][0] = 0.0f, rightleg[1][1][1][1][1] = 0.0f, rightleg[1][1][1][1][2] = 0.0f;
-	rightleg[1][1][1][2][0] = 0.0f, rightleg[1][1][1][2][1] = 0.0f, rightleg[1][1][1][2][2] = 0.0f;
+	rightleg[1][1][0][0][0] = 0.0f, rightleg[1][1][0][0][1] = 1.0f, rightleg[1][1][0][0][2] = 0.0f;
+	rightleg[1][1][0][1][0] = 0.0f, rightleg[1][1][0][1][1] = 1.0f, rightleg[1][1][0][1][2] = 0.0f;
+	rightleg[1][1][0][2][0] = 0.0f, rightleg[1][1][0][2][1] = 1.0f, rightleg[1][1][0][2][2] = 0.0f;
+															  
+	rightleg[1][1][1][0][0] = 0.0f, rightleg[1][1][1][0][1] = 1.0f, rightleg[1][1][1][0][2] = 0.0f;
+	rightleg[1][1][1][1][0] = 0.0f, rightleg[1][1][1][1][1] = 1.0f, rightleg[1][1][1][1][2] = 0.0f;
+	rightleg[1][1][1][2][0] = 0.0f, rightleg[1][1][1][2][1] = 1.0f, rightleg[1][1][1][2][2] = 0.0f;
 
 	// 좌측 좌표
 	rightleg[2][0][0][0][0] = back_left_top_x, rightleg[2][0][0][0][1] = back_left_top_y, rightleg[2][0][0][0][2] = back_left_top_z;
@@ -685,13 +684,13 @@ Robot::Robot()
 	rightleg[2][0][1][2][0] = back_left_top_x, rightleg[2][0][1][2][1] = back_left_top_y, rightleg[2][0][1][2][2] = back_left_top_z;
 
 	// 좌측 색상
-	rightleg[2][1][0][0][0] = 0.0f, rightleg[2][1][0][0][1] = 0.0f, rightleg[2][1][0][0][2] = 0.0f;
-	rightleg[2][1][0][1][0] = 0.0f, rightleg[2][1][0][1][1] = 0.0f, rightleg[2][1][0][1][2] = 0.0f;
-	rightleg[2][1][0][2][0] = 0.0f, rightleg[2][1][0][2][1] = 0.0f, rightleg[2][1][0][2][2] = 0.0f;
-
-	rightleg[2][1][1][0][0] = 0.0f, rightleg[2][1][1][0][1] = 0.0f, rightleg[2][1][1][0][2] = 0.0f;
-	rightleg[2][1][1][1][0] = 0.0f, rightleg[2][1][1][1][1] = 0.0f, rightleg[2][1][1][1][2] = 0.0f;
-	rightleg[2][1][1][2][0] = 0.0f, rightleg[2][1][1][2][1] = 0.0f, rightleg[2][1][1][2][2] = 0.0f;
+	rightleg[2][1][0][0][0] = -1.0f, rightleg[2][1][0][0][1] = 0.0f, rightleg[2][1][0][0][2] = 0.0f;
+	rightleg[2][1][0][1][0] = -1.0f, rightleg[2][1][0][1][1] = 0.0f, rightleg[2][1][0][1][2] = 0.0f;
+	rightleg[2][1][0][2][0] = -1.0f, rightleg[2][1][0][2][1] = 0.0f, rightleg[2][1][0][2][2] = 0.0f;
+							  
+	rightleg[2][1][1][0][0] = -1.0f, rightleg[2][1][1][0][1] = 0.0f, rightleg[2][1][1][0][2] = 0.0f;
+	rightleg[2][1][1][1][0] = -1.0f, rightleg[2][1][1][1][1] = 0.0f, rightleg[2][1][1][1][2] = 0.0f;
+	rightleg[2][1][1][2][0] = -1.0f, rightleg[2][1][1][2][1] = 0.0f, rightleg[2][1][1][2][2] = 0.0f;
 
 	// 후면 좌표
 	rightleg[3][0][0][0][0] = back_left_top_x, rightleg[3][0][0][0][1] = back_left_top_y, rightleg[3][0][0][0][2] = back_left_top_z;
@@ -703,13 +702,13 @@ Robot::Robot()
 	rightleg[3][0][1][2][0] = back_right_down_x, rightleg[3][0][1][2][1] = back_right_down_y, rightleg[3][0][1][2][2] = back_right_down_z;
 
 	// 후면 색상
-	rightleg[3][1][0][0][0] = 0.0f, rightleg[3][1][0][0][1] = 0.0f, rightleg[3][1][0][0][2] = 0.0f;
-	rightleg[3][1][0][1][0] = 0.0f, rightleg[3][1][0][1][1] = 0.0f, rightleg[3][1][0][1][2] = 0.0f;
-	rightleg[3][1][0][2][0] = 0.0f, rightleg[3][1][0][2][1] = 0.0f, rightleg[3][1][0][2][2] = 0.0f;
-
-	rightleg[3][1][1][0][0] = 0.0f, rightleg[3][1][1][0][1] = 0.0f, rightleg[3][1][1][0][2] = 0.0f;
-	rightleg[3][1][1][1][0] = 0.0f, rightleg[3][1][1][1][1] = 0.0f, rightleg[3][1][1][1][2] = 0.0f;
-	rightleg[3][1][1][2][0] = 0.0f, rightleg[3][1][1][2][1] = 0.0f, rightleg[3][1][1][2][2] = 0.0f;
+	rightleg[3][1][0][0][0] = 0.0f, rightleg[3][1][0][0][1] = 0.0f, rightleg[3][1][0][0][2] = -1.0f;
+	rightleg[3][1][0][1][0] = 0.0f, rightleg[3][1][0][1][1] = 0.0f, rightleg[3][1][0][1][2] = -1.0f;
+	rightleg[3][1][0][2][0] = 0.0f, rightleg[3][1][0][2][1] = 0.0f, rightleg[3][1][0][2][2] = -1.0f;
+																							  
+	rightleg[3][1][1][0][0] = 0.0f, rightleg[3][1][1][0][1] = 0.0f, rightleg[3][1][1][0][2] = -1.0f;
+	rightleg[3][1][1][1][0] = 0.0f, rightleg[3][1][1][1][1] = 0.0f, rightleg[3][1][1][1][2] = -1.0f;
+	rightleg[3][1][1][2][0] = 0.0f, rightleg[3][1][1][2][1] = 0.0f, rightleg[3][1][1][2][2] = -1.0f;
 
 	// 하단 좌표
 	rightleg[4][0][0][0][0] = back_right_down_x, rightleg[4][0][0][0][1] = back_right_down_y, rightleg[4][0][0][0][2] = back_right_down_z;
@@ -721,13 +720,13 @@ Robot::Robot()
 	rightleg[4][0][1][2][0] = back_right_down_x, rightleg[4][0][1][2][1] = back_right_down_y, rightleg[4][0][1][2][2] = back_right_down_z;
 
 	// 하단 색상
-	rightleg[4][1][0][0][0] = 0.0f, rightleg[4][1][0][0][1] = 0.0f, rightleg[4][1][0][0][2] = 0.0f;
-	rightleg[4][1][0][1][0] = 0.0f, rightleg[4][1][0][1][1] = 0.0f, rightleg[4][1][0][1][2] = 0.0f;
-	rightleg[4][1][0][2][0] = 0.0f, rightleg[4][1][0][2][1] = 0.0f, rightleg[4][1][0][2][2] = 0.0f;
-
-	rightleg[4][1][1][0][0] = 0.0f, rightleg[4][1][1][0][1] = 0.0f, rightleg[4][1][1][0][2] = 0.0f;
-	rightleg[4][1][1][1][0] = 0.0f, rightleg[4][1][1][1][1] = 0.0f, rightleg[4][1][1][1][2] = 0.0f;
-	rightleg[4][1][1][2][0] = 0.0f, rightleg[4][1][1][2][1] = 0.0f, rightleg[4][1][1][2][2] = 0.0f;
+	rightleg[4][1][0][0][0] = 0.0f, rightleg[4][1][0][0][1] = -1.0f, rightleg[4][1][0][0][2] = 0.0f;
+	rightleg[4][1][0][1][0] = 0.0f, rightleg[4][1][0][1][1] = -1.0f, rightleg[4][1][0][1][2] = 0.0f;
+	rightleg[4][1][0][2][0] = 0.0f, rightleg[4][1][0][2][1] = -1.0f, rightleg[4][1][0][2][2] = 0.0f;
+															  
+	rightleg[4][1][1][0][0] = 0.0f, rightleg[4][1][1][0][1] = -1.0f, rightleg[4][1][1][0][2] = 0.0f;
+	rightleg[4][1][1][1][0] = 0.0f, rightleg[4][1][1][1][1] = -1.0f, rightleg[4][1][1][1][2] = 0.0f;
+	rightleg[4][1][1][2][0] = 0.0f, rightleg[4][1][1][2][1] = -1.0f, rightleg[4][1][1][2][2] = 0.0f;
 
 	// 우측 좌표
 	rightleg[5][0][0][0][0] = back_right_down_x, rightleg[5][0][0][0][1] = back_right_down_y, rightleg[5][0][0][0][2] = back_right_down_z;
@@ -739,31 +738,43 @@ Robot::Robot()
 	rightleg[5][0][1][2][0] = front_right_top_x, rightleg[5][0][1][2][1] = front_right_top_y, rightleg[5][0][1][2][2] = front_right_top_z;
 
 	// 우측 색상
-	rightleg[5][1][0][0][0] = 0.0f, rightleg[5][1][0][0][1] = 0.0f, rightleg[5][1][0][0][2] = 0.0f;
-	rightleg[5][1][0][1][0] = 0.0f, rightleg[5][1][0][1][1] = 0.0f, rightleg[5][1][0][1][2] = 0.0f;
-	rightleg[5][1][0][2][0] = 0.0f, rightleg[5][1][0][2][1] = 0.0f, rightleg[5][1][0][2][2] = 0.0f;
-
-	rightleg[5][1][1][0][0] = 0.0f, rightleg[5][1][1][0][1] = 0.0f, rightleg[5][1][1][0][2] = 0.0f;
-	rightleg[5][1][1][1][0] = 0.0f, rightleg[5][1][1][1][1] = 0.0f, rightleg[5][1][1][1][2] = 0.0f;
-	rightleg[5][1][1][2][0] = 0.0f, rightleg[5][1][1][2][1] = 0.0f, rightleg[5][1][1][2][2] = 0.0f;
+	rightleg[5][1][0][0][0] = 1.0f, rightleg[5][1][0][0][1] = 0.0f, rightleg[5][1][0][0][2] = 0.0f;
+	rightleg[5][1][0][1][0] = 1.0f, rightleg[5][1][0][1][1] = 0.0f, rightleg[5][1][0][1][2] = 0.0f;
+	rightleg[5][1][0][2][0] = 1.0f, rightleg[5][1][0][2][1] = 0.0f, rightleg[5][1][0][2][2] = 0.0f;
+							  
+	rightleg[5][1][1][0][0] = 1.0f, rightleg[5][1][1][0][1] = 0.0f, rightleg[5][1][1][0][2] = 0.0f;
+	rightleg[5][1][1][1][0] = 1.0f, rightleg[5][1][1][1][1] = 0.0f, rightleg[5][1][1][1][2] = 0.0f;
+	rightleg[5][1][1][2][0] = 1.0f, rightleg[5][1][1][2][1] = 0.0f, rightleg[5][1][1][2][2] = 0.0f;
 }
 
 void Robot::allReset()
 {
 	movement = 0;
 	xPos = 0.05f, yPos = 0.0f, zPos = 0.05f, rotation = 90.0f;
-	HeightFromGround[0] = 0.05f;
-	HeightFromGround[1] = 0.03f;
+	HeightFromGround[0] = 0.5f;
+	HeightFromGround[1] = 0.3f;
 	HeightFromGround[2] = 0.0f;
-	HeightFromGround[3] = -0.04f;
+	HeightFromGround[3] = -0.4f;
 	HeightFromGround[4] = 0.0f;
-	HeightFromGround[5] = -0.04f;
+	HeightFromGround[5] = -0.4f;
 	hanging = true;
 	jump = 0;
+	for (int i = 0; i < 51; i++) {
+		backup[i][0] = 0.0f;
+		backup[i][1] = 0.0f;
+		backup[i][2] = 0.0f;
+	}
+	backup[0][0] = xPos, backup[0][1] = yPos, backup[0][2] = zPos;
+	partnercount = 0;
+	for (int i = 0; i < 5; i++) {
+		picked[i] = false;
+	}
 }
 
-void Robot::initBuffer()
+void Robot::initBuffer(GLint s_program)
 {
+	this->s_program = s_program;
+
 	glGenVertexArrays(6, body_vao);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(body_vao[i]);
@@ -835,10 +846,14 @@ void Robot::initBuffer()
 			glEnableVertexAttribArray(j);
 		}
 	}
+
+	glUseProgram(this->s_program);
+	objColorLocation = glGetUniformLocation(s_program, "objectColor"); //--- object Color값 전달
 }
 
 void Robot::body_draw()
 {
+	glUniform4f(objColorLocation, 0.5f, 0.5f, 0.5f, 0.5f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(body_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -847,6 +862,7 @@ void Robot::body_draw()
 
 void Robot::head_draw()
 {
+	glUniform4f(objColorLocation, 0.1f, 0.1f, 0.1f, 0.1f);
 	for (int i = 0; i < 7; i++) {
 		glBindVertexArray(head_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -855,6 +871,7 @@ void Robot::head_draw()
 
 void Robot::leftarm_draw()
 {
+	glUniform4f(objColorLocation, 0.3f, 1.0f, 0.8f, 0.1f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(leftarm_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -863,6 +880,7 @@ void Robot::leftarm_draw()
 
 void Robot::leftleg_draw()
 {
+	glUniform4f(objColorLocation, 0.3f, 0.8f, 1.0f, 0.1f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(leftleg_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -871,6 +889,7 @@ void Robot::leftleg_draw()
 
 void Robot::rightarm_draw()
 {
+	glUniform4f(objColorLocation, 0.7f, 1.0f, 0.8f, 0.1f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(rightarm_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -879,80 +898,85 @@ void Robot::rightarm_draw()
 
 void Robot::rightleg_draw()
 {
+	glUniform4f(objColorLocation, 0.7f, 0.8f, 1.0f, 0.1f);
 	for (int i = 0; i < 6; i++) {
 		glBindVertexArray(rightleg_vao[i]);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 }
 
-void Robot::update(GLfloat* mx, GLfloat* mz, GLint objectCount)
+void Robot::update(GLfloat* mx, GLfloat* mz, GLint obsCount, GLfloat* ox, GLfloat* oz, GLint objectCount)
 {
-	
+	bool go = true, down = true;
+	for (int i = 0; i < objectCount; i++) {
+		if (!picked[i] && xPos - 0.1f < ox[i] + 0.2f && xPos + 0.1f > ox[i] - 0.2f && zPos + 0.1f > oz[i] - 0.2f && zPos - 0.1f < oz[i] + 0.2f) {
+			picked[i] = true;
+			partnercount++;
+			break;
+		}
+	}
 	if (movement == 0) {
-		for (int i = 0; i < objectCount; i++) {
-			if (xPos - 0.1f + 0.01f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
-				continue;
-			}
-			else if (xPos >= 3.0f) {
-				xPos = -3.0f;
-				break;
-			}
-			else {
-				xPos += 0.01f;
+		for (int i = 0; i < obsCount; i++) {
+			if (xPos - 0.1f + 0.025f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
+				go = false;
 				break;
 			}
 		}
-		
+		if (go && xPos >= 3.0f) {
+			xPos = -3.0f;
+
+		}
+		else if (go) {
+			xPos += 0.025f;
+
+		}
 	}
 	else if (movement == 1) {
-		for (int i = 0; i < objectCount; i++) {
-			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f - 0.01f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
-				continue;
-			}
-			else if (xPos <= -3.0f) {
-				xPos = 3.0f;
+		for (int i = 0; i < obsCount; i++) {
+			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f - 0.025f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
+				go = false;
 				break;
 			}
-			else {
-				xPos -= 0.01f;
-				break;
-			}
+		}
+		if (go && xPos <= -3.0f) {
+			xPos = 3.0f;
+		}
+		else if (go) {
+			xPos -= 0.025f;
 		}
 	}
 	else if (movement == 2) {
-		for (int i = 0; i < objectCount; i++) {
-			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f + 0.01f < mz[i] + 0.1f && yPos < 0.2f) {
-				continue;
-			}
-			else if (zPos >= 3.0f) {
-				zPos = -3.0f;
+		for (int i = 0; i < obsCount; i++) {
+			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f > mz[i] - 0.1f && zPos - 0.1f + 0.025f < mz[i] + 0.1f && yPos < 0.2f) {
+				go = false;
 				break;
 			}
-			else {
-				zPos += 0.01f;
-				break;
-			}
+		}
+		if (go && zPos >= 3.0f) {
+			zPos = -3.0f;
+		}
+		else if (go) {
+			zPos += 0.025f;
 		}
 	}
 	else if (movement == 3) {
-		for (int i = 0; i < objectCount; i++) {
-			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f - 0.01f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
-				continue;
-			}
-			else if (zPos <= -3.0f) {
-				zPos = 3.0f;
-				break;
-			}
-			else {
-				zPos -= 0.01f;
+		for (int i = 0; i < obsCount; i++) {
+			if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f - 0.025f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos < 0.2f) {
+				go = false;
 				break;
 			}
 		}
+		if (go && zPos <= -3.0f) {
+			zPos = 3.0f;
+		}
+		else if (go) {
+			zPos -= 0.025f;
+		}
 	}
 	if (jump == 1) {
-		if (yPos + 0.05f >= 0.5f) {
+		if (yPos + 0.05f >= 0.8f) {
 			jump = 2;
-			yPos = 0.5f;
+			yPos = 0.8f;
 		}
 		else {
 			yPos += 0.05f;
@@ -964,13 +988,14 @@ void Robot::update(GLfloat* mx, GLfloat* mz, GLint objectCount)
 			yPos = 0.0f;
 		}
 		else {
-			for (int i = 0; i < objectCount; i++) {
+			for (int i = 0; i < obsCount; i++) {
 				if (xPos - 0.1f < mx[i] + 0.2f && xPos + 0.1f > mx[i] - 0.2f && zPos + 0.1f - 0.01f > mz[i] - 0.1f && zPos - 0.1f < mz[i] + 0.1f && yPos - 0.05f < 0.2f) {
-
+					down = false;
+					break;
 				}
-				else {
-					yPos -= 0.05f;
-				}
+			}
+			if (down) {
+				yPos -= 0.05f;
 			}
 		}
 	}
@@ -992,12 +1017,20 @@ void Robot::update(GLfloat* mx, GLfloat* mz, GLint objectCount)
 			hangingPos -= 1.0f;
 		}
 	}
+	for (int i = 49; i >= 0; i--) {
+		backup[i + 1][0] = backup[i][0];
+		backup[i + 1][1] = backup[i][1];
+		backup[i + 1][2] = backup[i][2];
+	}
+	backup[0][0] = xPos;
+	backup[0][1] = yPos;
+	backup[0][2] = zPos;
 }
 
 void Robot::putFactor(glm::mat4 inputFactor)
 {
 	bodyFactor = inputFactor;
-	bodyFactor = glm::translate(bodyFactor, glm::vec3(xPos, 0.0f, zPos));
+	bodyFactor = glm::translate(bodyFactor, glm::vec3(xPos, yPos, zPos));
 	bodyFactor = glm::translate(bodyFactor, glm::vec3(0.0f, HeightFromGround[0], 0.0f));	// 기본으로 세팅할 객체의 위치
 	bodyFactor = glm::rotate(bodyFactor, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -1005,28 +1038,63 @@ void Robot::putFactor(glm::mat4 inputFactor)
 	headFactor = glm::translate(headFactor, glm::vec3(0.0f, HeightFromGround[1], 0.0f));	// 기본으로 세팅할 객체의 위치
 
 	leftarmFactor = bodyFactor;
-	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(-0.025f, HeightFromGround[2], 0.0f));	// 기본으로 세팅할 객체의 위치
-	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, 0.02f, 0.0f));
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(-0.25f, HeightFromGround[2], 0.0f));	// 기본으로 세팅할 객체의 위치
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, 0.2f, 0.0f));
 	leftarmFactor = glm::rotate(leftarmFactor, glm::radians(hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
-	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, -0.02f, 0.0f));
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, -0.2f, 0.0f));
 
 	leftlegFactor = bodyFactor;
-	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(-0.01f, HeightFromGround[3], 0.0f));	// 기본으로 세팅할 객체의 위치
-	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, 0.02f, 0.0f));
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(-0.1f, HeightFromGround[3], 0.0f));	// 기본으로 세팅할 객체의 위치
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, 0.2f, 0.0f));
 	leftlegFactor = glm::rotate(leftlegFactor, glm::radians(-hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
-	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, -0.02f, 0.0f));
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, -0.2f, 0.0f));
 
 	rightarmFactor = bodyFactor;
-	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.025f, HeightFromGround[4], 0.0f));	// 기본으로 세팅할 객체의 위치
-	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, 0.02f, 0.0f));
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.25f, HeightFromGround[4], 0.0f));	// 기본으로 세팅할 객체의 위치
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, 0.2f, 0.0f));
 	rightarmFactor = glm::rotate(rightarmFactor, glm::radians(-hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
-	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, -0.02f, 0.0f));
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, -0.2f, 0.0f));
 
 	rightlegFactor = bodyFactor;
-	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.01f, HeightFromGround[5], 0.0f));	// 기본으로 세팅할 객체의 위치
-	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, 0.02f, 0.0f));
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.1f, HeightFromGround[5], 0.0f));	// 기본으로 세팅할 객체의 위치
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, 0.2f, 0.0f));
 	rightlegFactor = glm::rotate(rightlegFactor, glm::radians(hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
-	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, -0.02f, 0.0f));
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, -0.2f, 0.0f));
+}
+
+void Robot::putsubFactor(glm::mat4 inputFactor, int i)
+{
+	bodyFactor = inputFactor;
+	bodyFactor = glm::translate(bodyFactor, glm::vec3(backup[i * 10 + 9][0], backup[i * 10 + 9][1], backup[i * 10 + 9][2]));
+	bodyFactor = glm::translate(bodyFactor, glm::vec3(0.0f, HeightFromGround[0], 0.0f));	// 기본으로 세팅할 객체의 위치
+	bodyFactor = glm::rotate(bodyFactor, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+
+	headFactor = bodyFactor;
+	headFactor = glm::translate(headFactor, glm::vec3(0.0f, HeightFromGround[1], 0.0f));	// 기본으로 세팅할 객체의 위치
+
+	leftarmFactor = bodyFactor;
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(-0.25f, HeightFromGround[2], 0.0f));	// 기본으로 세팅할 객체의 위치
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, 0.2f, 0.0f));
+	leftarmFactor = glm::rotate(leftarmFactor, glm::radians(hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
+	leftarmFactor = glm::translate(leftarmFactor, glm::vec3(0.0f, -0.2f, 0.0f));
+
+	leftlegFactor = bodyFactor;
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(-0.1f, HeightFromGround[3], 0.0f));	// 기본으로 세팅할 객체의 위치
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, 0.2f, 0.0f));
+	leftlegFactor = glm::rotate(leftlegFactor, glm::radians(-hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
+	leftlegFactor = glm::translate(leftlegFactor, glm::vec3(0.0f, -0.2f, 0.0f));
+
+	rightarmFactor = bodyFactor;
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.25f, HeightFromGround[4], 0.0f));	// 기본으로 세팅할 객체의 위치
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, 0.2f, 0.0f));
+	rightarmFactor = glm::rotate(rightarmFactor, glm::radians(-hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
+	rightarmFactor = glm::translate(rightarmFactor, glm::vec3(0.0f, -0.2f, 0.0f));
+
+	rightlegFactor = bodyFactor;
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.1f, HeightFromGround[5], 0.0f));	// 기본으로 세팅할 객체의 위치
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, 0.2f, 0.0f));
+	rightlegFactor = glm::rotate(rightlegFactor, glm::radians(hangingPos), glm::vec3(1.0f, 0.0f, 0.0f));
+	rightlegFactor = glm::translate(rightlegFactor, glm::vec3(0.0f, -0.2f, 0.0f));
 }
 
 glm::mat4 Robot::getbodyFactor()

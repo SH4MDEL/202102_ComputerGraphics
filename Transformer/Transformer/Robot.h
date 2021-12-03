@@ -27,6 +27,8 @@ struct Robot
 	GLuint rightleg_vao[6], rightleg_vbo[6][2];
 	glm::mat4 rightlegFactor;
 
+	GLint s_program;
+	int objColorLocation;
 	////////////////////////////////////////////////////////////////////////
 	// 기타 필요한 변수들 생성
 	GLint movement;
@@ -35,11 +37,14 @@ struct Robot
 	bool hanging;
 	GLfloat hangingPos;
 	GLint jump;
+	GLfloat backup[51][3] = { 0 };
+	GLint partnercount;
+	bool picked[5];
 	////////////////////////////////////////////////////////////////////////
 
 	Robot();
 
-	void initBuffer();
+	void initBuffer(GLint s_program);
 	void body_draw();
 	void head_draw();
 	void leftarm_draw();
@@ -48,9 +53,10 @@ struct Robot
 	void rightleg_draw();
 
 	void allReset();
-	void update(GLfloat* mx, GLfloat* mz, GLint objectCount);
+	void update(GLfloat* mx, GLfloat* mz, GLint obsCount, GLfloat* ox, GLfloat* oz, GLint objectCount);
 
 	void putFactor(glm::mat4 inputFactor);
+	void putsubFactor(glm::mat4 inputFactor, int i);
 
 	glm::mat4 getbodyFactor();
 	glm::mat4 getheadFactor();
